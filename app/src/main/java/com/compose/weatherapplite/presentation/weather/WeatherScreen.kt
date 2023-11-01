@@ -10,7 +10,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun WeatherScreen(
     viewModel: WeatherViewModel = hiltViewModel()
 ) {
-    viewModel.initiateApiRequest()
     val state = viewModel.state
 
     if (state?.hourlyUnit != null) {

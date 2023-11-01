@@ -23,7 +23,11 @@ class WeatherViewModel @Inject constructor(
 
     var state by mutableStateOf<WeatherState?>(null)
 
-    fun initiateApiRequest() {
+    init {
+        initiateApiRequest()
+    }
+
+    private fun initiateApiRequest() {
         viewModelScope.launch {
             val response = repository.getWeatherForecastAndCurrent(
                 latitude = "18.5892864",

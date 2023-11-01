@@ -1,6 +1,7 @@
 package com.compose.weatherapplite.di
 
 import com.compose.weatherapplite.data.repository.WeatherRepositoryImpl
+import com.compose.weatherapplite.data.repositoryfake.FakeWeatherRepositoryImpl
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
@@ -11,9 +12,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-    @Binds
+/*    @Binds
     @Singleton
     abstract fun bindWeatherRepository(
         weatherRepositoryImpl: WeatherRepositoryImpl
+    ): WeatherRepository*/
+
+    @Binds
+    @Singleton
+    abstract fun bindFakeWeatherRepository(
+        fakeWeatherRepositoryImpl: FakeWeatherRepositoryImpl
     ): WeatherRepository
 }
