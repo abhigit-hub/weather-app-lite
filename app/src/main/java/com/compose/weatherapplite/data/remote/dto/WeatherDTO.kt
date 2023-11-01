@@ -2,43 +2,43 @@ package com.compose.weatherapplite.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class CurrentWeatherDTO(
+data class WeatherDTO(
     val latitude: Double,
     val longitude: Double,
     @SerializedName("generationtime_ms") val timeInMillis: String,
     val timezone: String,
     @SerializedName("timezone_abbreviation") val timezoneAbbreviation: String,
     val elevation: Int,
-    @SerializedName("current_units") val currentUnit: CurrentUnit,
-    val current: Current,
-    @SerializedName("hourly_units") val hourlyUnit: HourlyUnit,
-    val hourly: Hourly
+    @SerializedName("current_units") val currentUnitDTO: CurrentUnitDTO,
+    @SerializedName("current") val currentDTO: CurrentDTO,
+    @SerializedName("hourly_units") val hourlyUnitDTO: HourlyUnitDTO,
+    @SerializedName("hourly") val hourlyDTO: HourlyDTO
 )
 
-data class CurrentUnit(
+data class CurrentUnitDTO(
     val time: String,
     val interval: String,
-    @SerializedName("temparature_2m") val temperature: String,
+    @SerializedName("temperature_2m") val temperature: String,
     @SerializedName("windspeed_10m") val windspeed: String,
 )
 
-data class HourlyUnit(
+data class HourlyUnitDTO(
     val time: String,
-    @SerializedName("temparature_2m") val temperature: String,
+    @SerializedName("temperature_2m") val temperature: String,
     @SerializedName("relativehumidity_2m") val humidity: String,
     @SerializedName("windspeed_10m") val windspeed: String,
 )
 
-data class Current(
+data class CurrentDTO(
     val time: String,
     val interval: Int,
-    @SerializedName("temparature_2m") val temperature: Int,
-    @SerializedName("windspeed_10m") val windspeed: Int,
+    @SerializedName("temperature_2m") val temperature: Double,
+    @SerializedName("windspeed_10m") val windspeed: Double,
 )
 
-data class Hourly(
+data class HourlyDTO(
     val time: List<String>,
-    @SerializedName("temparature_2m") val temperature: List<Int>,
+    @SerializedName("temperature_2m") val temperature: List<Double>,
     @SerializedName("relativehumidity_2m") val humidity: List<Int>,
-    @SerializedName("windspeed_10m") val windspeed: List<Int>,
+    @SerializedName("windspeed_10m") val windspeed: List<Double>,
 )

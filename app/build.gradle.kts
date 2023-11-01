@@ -71,9 +71,10 @@ dependencies {
     // Compose - UI - Material 3
     implementation(libs.androidx.compose.material3)
 
-    // Retrofit
+    // Retrofit (Retrofit, Gson Converter, OkHTTP Logging)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.okhttp.logging)
 
     // Dagger - Hilt
     implementation(libs.androidx.hilt.navigation.compose)
