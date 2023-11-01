@@ -1,4 +1,4 @@
-package com.compose.weatherapplite
+package com.compose.weatherapplite.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
