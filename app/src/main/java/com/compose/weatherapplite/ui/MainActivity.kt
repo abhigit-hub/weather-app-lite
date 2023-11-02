@@ -13,8 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.compose.weatherapplite.presentation.weather.WeatherScreen
+import com.compose.weatherapplite.presentation.weather.composables.WeatherScreen
 import com.compose.weatherapplite.ui.theme.WeatherAppLiteTheme
+import com.compose.weatherapplite.ui.theme.md_theme_dark_background
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,8 +43,8 @@ fun MainSurface() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
-        contentAlignment = Alignment.Center
+            .background(md_theme_dark_background),
+        contentAlignment = Alignment.TopCenter
     ) {
         WeatherScreen()
     }
