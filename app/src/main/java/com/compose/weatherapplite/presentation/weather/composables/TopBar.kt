@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,13 +19,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.compose.weatherapplite.R
+import com.compose.weatherapplite.presentation.weather.WeatherTempState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
+import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
+import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
+import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
-fun TopBar() {
+fun TopBar(weatherTempState: WeatherTempState) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,36 +51,54 @@ fun TopBar() {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Stuttgart",
-                color = Color.White,
-                style = WeatherTypography.displaySmall,
-                fontWeight = FontWeight.Bold,
+                text = weatherTempState.city,
+                color = md_theme_dark_primary,
+                style = WeatherTypography.headlineSmall,
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "02, November, Thursday",
-                color = Color.White,
-                style = WeatherTypography.bodyMedium,
+                text = weatherTempState.currentDate,
+                color = md_theme_dark_secondary,
+                style = WeatherTypography.bodyLarge,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth()
             )
         }
 
         Box(
             modifier = Modifier
-                .fillMaxHeight(0.7f)
-                .weight(0.15f)
-                .clip(RoundedCornerShape(15.dp))
+                .fillMaxHeight(0.4f)
+                .weight(0.1f)
+                .clip(RoundedCornerShape(10.dp))
                 .background(md_theme_dark_primaryContainer)
         ) {
             Icon(
-                imageVector = Icons.Default.List,
+                painter = painterResource(id = R.drawable.vd_menu),
                 contentDescription = "list more cities",
-                tint = Color.White,
+                tint = md_theme_dark_onSecondary,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(15.dp)
+                    .padding(7.dp)
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun TopBarPreview() {
+    TopBar(
+        weatherTempState = WeatherTempState(
+            "12.34",
+            "11.76",
+            "Pune",
+            "3 November, Friday",
+            "18",
+            "Thunderstorm",
+            "10 m/s",
+            "98%",
+            "100%"
+        )
+    )
 }

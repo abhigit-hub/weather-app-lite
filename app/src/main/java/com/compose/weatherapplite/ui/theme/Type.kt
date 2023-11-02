@@ -12,14 +12,30 @@ import androidx.compose.ui.unit.sp
 import com.compose.weatherapplite.R
 
 // Set of Material typography styles to start with
-private val Montserrat = FontFamily(
-    Font(R.font.montserrat_regular),
-    Font(R.font.montserrat_medium, FontWeight.W500)
+private val russoOne = FontFamily(
+    Font(R.font.russo_one_regular),
+    Font(R.font.russo_one_regular, FontWeight.W500)
+)
+
+private val chakraPetch = FontFamily(
+    Font(R.font.chakrapetch_regular),
+    Font(R.font.chakrapetch_regular, FontWeight.W500)
 )
 
 @Suppress("DEPRECATION")
 val defaultTextStyle = TextStyle(
-    fontFamily = Montserrat,
+    fontFamily = chakraPetch,
+    platformStyle = PlatformTextStyle(
+        includeFontPadding = false
+    ),
+    lineHeightStyle = LineHeightStyle(
+        alignment = LineHeightStyle.Alignment.Center,
+        trim = LineHeightStyle.Trim.None
+    )
+)
+
+val russoOneTextStyle = TextStyle(
+    fontFamily = russoOne,
     platformStyle = PlatformTextStyle(
         includeFontPadding = false
     ),
@@ -30,42 +46,42 @@ val defaultTextStyle = TextStyle(
 )
 
 val WeatherTypography = Typography(
-    displayLarge = defaultTextStyle.copy(
+    displayLarge = russoOneTextStyle.copy(
         fontSize = 57.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp
     ),
-    displayMedium = defaultTextStyle.copy(
+    displayMedium = russoOneTextStyle.copy(
         fontSize = 45.sp, lineHeight = 52.sp, letterSpacing = 0.sp
     ),
-    displaySmall = defaultTextStyle.copy(
+    displaySmall = russoOneTextStyle.copy(
         fontSize = 36.sp, lineHeight = 44.sp, letterSpacing = 0.sp
     ),
-    headlineLarge = defaultTextStyle.copy(
+    headlineLarge = russoOneTextStyle.copy(
         fontSize = 32.sp, lineHeight = 40.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
-    headlineMedium = defaultTextStyle.copy(
+    headlineMedium = russoOneTextStyle.copy(
         fontSize = 28.sp, lineHeight = 36.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
-    headlineSmall = defaultTextStyle.copy(
+    headlineSmall = russoOneTextStyle.copy(
         fontSize = 24.sp, lineHeight = 32.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
-    titleLarge = defaultTextStyle.copy(
+    titleLarge = russoOneTextStyle.copy(
         fontSize = 22.sp, lineHeight = 28.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
-    titleMedium = defaultTextStyle.copy(
+    titleMedium = russoOneTextStyle.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.15.sp,
         fontWeight = FontWeight.Medium,
         lineBreak = LineBreak.Heading
     ),
-    titleSmall = defaultTextStyle.copy(
+    titleSmall = russoOneTextStyle.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp,
         fontWeight = FontWeight.Medium,
         lineBreak = LineBreak.Heading
     ),
-    labelLarge = defaultTextStyle.copy(
+    labelLarge = russoOneTextStyle.copy(
         fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.1.sp, fontWeight = FontWeight.Medium
     ),
     labelMedium = defaultTextStyle.copy(
@@ -93,3 +109,13 @@ val WeatherTypography = Typography(
         lineBreak = LineBreak.Paragraph
     ),
 )
+
+/*
+* Test Size Order
+*
+* 1. Display
+* 2. Headline
+* 3. Title
+* 4. Label
+* 5. Body
+* */
