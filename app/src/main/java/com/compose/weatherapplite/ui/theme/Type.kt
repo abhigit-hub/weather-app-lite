@@ -47,7 +47,7 @@ val russoOneTextStyle = TextStyle(
 
 val WeatherTypography = Typography(
     displayLarge = russoOneTextStyle.copy(
-        fontSize = 57.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp
+        fontSize = 110.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp
     ),
     displayMedium = russoOneTextStyle.copy(
         fontSize = 45.sp, lineHeight = 52.sp, letterSpacing = 0.sp
@@ -64,7 +64,7 @@ val WeatherTypography = Typography(
     headlineSmall = russoOneTextStyle.copy(
         fontSize = 24.sp, lineHeight = 32.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
-    titleLarge = russoOneTextStyle.copy(
+    titleLarge = defaultTextStyle.copy(
         fontSize = 22.sp, lineHeight = 28.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading
     ),
     titleMedium = russoOneTextStyle.copy(
@@ -81,7 +81,7 @@ val WeatherTypography = Typography(
         fontWeight = FontWeight.Medium,
         lineBreak = LineBreak.Heading
     ),
-    labelLarge = russoOneTextStyle.copy(
+    labelLarge = defaultTextStyle.copy(
         fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.1.sp, fontWeight = FontWeight.Medium
     ),
     labelMedium = defaultTextStyle.copy(

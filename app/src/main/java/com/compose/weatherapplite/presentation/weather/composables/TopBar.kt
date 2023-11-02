@@ -36,17 +36,13 @@ fun TopBar(weatherTempState: WeatherTempState) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.17f)
-            .padding(
-                horizontal = 30.dp,
-                vertical = 40.dp,
-            ),
+            .fillMaxHeight(0.13f),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(0.85f)
+                .weight(0.88f)
                 .padding(3.dp),
             verticalArrangement = Arrangement.Center
         ) {
@@ -69,7 +65,7 @@ fun TopBar(weatherTempState: WeatherTempState) {
         Box(
             modifier = Modifier
                 .fillMaxHeight(0.4f)
-                .weight(0.1f)
+                .weight(0.12f)
                 .clip(RoundedCornerShape(10.dp))
                 .background(md_theme_dark_primaryContainer)
         ) {
@@ -79,7 +75,7 @@ fun TopBar(weatherTempState: WeatherTempState) {
                 tint = md_theme_dark_onSecondary,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(7.dp)
+                    .padding(8.dp)
             )
         }
     }
