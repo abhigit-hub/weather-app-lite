@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.utils.toDrawable
 import com.compose.weatherapplite.presentation.weather.WeatherTempState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
@@ -81,9 +82,9 @@ fun CurrentWeatherView(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "10 m/s", "Wind")
-                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "98%", "Humidity")
-                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "100%", "Rain")
+                CurrentWeatherItem(R.drawable.vd_main_wind, "10 m/s", "Wind")
+                CurrentWeatherItem(R.drawable.vd_main_humidity, "98%", "Humidity")
+                CurrentWeatherItem(R.drawable.vd_main_rain, "100%", "Rain")
             }
         }
     }
