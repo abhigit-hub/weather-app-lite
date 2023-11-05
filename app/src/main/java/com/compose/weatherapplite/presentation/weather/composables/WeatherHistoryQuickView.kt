@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.weather.temp.WeatherHistoryItemState
-import com.compose.weatherapplite.presentation.weather.temp.WeatherSelectorType
+import com.compose.weatherapplite.presentation.weather.temp.WeatherMenuSelectorType
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
@@ -37,17 +37,17 @@ fun WeatherHistoryQuickView(
 ) {
     Row {
         WeatherHistorySelectorView(
-            weatherSelectorType = WeatherSelectorType.WeatherSelectorTypeToday,
+            weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
             isSelected = true
         )
         Spacer(modifier = Modifier.width(20.dp))
         WeatherHistorySelectorView(
-            weatherSelectorType = WeatherSelectorType.WeatherSelectorTypeTomorrow,
+            weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow,
             isSelected = false
         )
         Spacer(modifier = Modifier.width(20.dp))
         WeatherHistorySelectorView(
-            weatherSelectorType = WeatherSelectorType.WeatherSelectorTypeNextTenDays,
+            weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays,
             isSelected = false
         )
     }
@@ -68,12 +68,12 @@ fun WeatherHistoryQuickView(
 }
 
 @Composable
-fun WeatherHistorySelectorView(weatherSelectorType: WeatherSelectorType, isSelected: Boolean) {
+fun WeatherHistorySelectorView(weatherMenuSelectorType: WeatherMenuSelectorType, isSelected: Boolean) {
    Column(
        horizontalAlignment = Alignment.CenterHorizontally
    ) {
        Text(
-           text = weatherSelectorType.weatherType,
+           text = weatherMenuSelectorType.weatherType,
            color = if (isSelected) md_theme_dark_primary else md_theme_dark_secondary,
            style = WeatherTypography.titleLarge
        )
