@@ -27,7 +27,8 @@ fun CurrentDTO.toCurrentInfo(): CurrentInfo {
         time = time,
         interval = interval,
         temperature = temperature,
-        windspeed = windspeed
+        windspeed = windspeed,
+        weatherCode = weathercode
     )
 }
 
@@ -45,7 +46,8 @@ fun HourlyDTO.toHourlyInfo(): HourlyInfo {
         time = time,
         temperature = temperature,
         humidity = humidity,
-        windspeed = windspeed
+        windspeed = windspeed,
+        weatherCode = weathercode
     )
 }
 

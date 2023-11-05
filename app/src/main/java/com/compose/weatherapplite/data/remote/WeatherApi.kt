@@ -8,9 +8,9 @@ interface WeatherApi {
     companion object {
         const val BASE_URL = "https://api.open-meteo.com/v1/"
         const val ADDITIONAL_QUERY_PARAMS_FOR_CURRENT_WEATHER =
-            "current=temperature_2m,windspeed_10m&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+            "current=temperature_2m,windspeed_10m,weathercode&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,weathercode"
         const val ADDITIONAL_QUERY_PARAMS_FOR_PAST_WEATHER =
-            "past_days=10&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+            "past_days=10,weathercode&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,weathercode"
     }
 
     @GET("forecast?$ADDITIONAL_QUERY_PARAMS_FOR_CURRENT_WEATHER")

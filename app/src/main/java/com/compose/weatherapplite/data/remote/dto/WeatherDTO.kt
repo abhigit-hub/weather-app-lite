@@ -34,6 +34,7 @@ data class CurrentDTO(
     val interval: Int,
     @SerializedName("temperature_2m") val temperature: Double,
     @SerializedName("windspeed_10m") val windspeed: Double,
+    val weathercode: Int
 )
 
 data class HourlyDTO(
@@ -41,4 +42,5 @@ data class HourlyDTO(
     @SerializedName("temperature_2m") val temperature: List<Double>,
     @SerializedName("relativehumidity_2m") val humidity: List<Int>,
     @SerializedName("windspeed_10m") val windspeed: List<Double>,
+    val weathercode: List<Int>
 )

@@ -22,7 +22,8 @@ fun CurrentInfo.toCurrent(): CurrentState {
         time = time,
         interval = interval,
         temperature = temperature,
-        windspeed = windspeed
+        windspeed = windspeed,
+        weatherCode = weatherCode
     )
 }
 
@@ -40,7 +41,8 @@ fun HourlyInfo.toHourly(): HourlyState {
         time = time,
         temperature = temperature,
         humidity = humidity,
-        windspeed = windspeed
+        windspeed = windspeed,
+        weatherCode = weatherCode
     )
 }
 

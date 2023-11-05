@@ -28,6 +28,7 @@ data class CurrentState(
     val interval: Int,
     val temperature: Double,
     val windspeed: Double,
+    val weatherCode: Int
 )
 
 data class HourlyState(
@@ -35,4 +36,5 @@ data class HourlyState(
     val temperature: List<Double>,
     val humidity: List<Int>,
     val windspeed: List<Double>,
+    val weatherCode: List<Int>
 )
