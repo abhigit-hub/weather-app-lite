@@ -21,8 +21,8 @@ fun WeatherScreen(
 
     if (state?.hourlyUnit != null) {
         val weatherTempState = WeatherTempState(
-            "12.34",
-            "11.76",
+            "12.930657",
+            "77.7379234",
             "Pune",
             "3 November, Friday",
             "18",
@@ -49,6 +49,8 @@ fun WeatherScreen(
             CurrentWeatherView(weatherTempState = weatherTempState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(weatherHistoryItems)
+            Spacer(modifier = Modifier.height(40.dp))
+            WeatherMapScreen(weatherTempState)
         }
     }
 }

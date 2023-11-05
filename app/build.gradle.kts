@@ -81,4 +81,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
+
+    // Compose - Map
+    implementation(libs.compose.map)
 }
