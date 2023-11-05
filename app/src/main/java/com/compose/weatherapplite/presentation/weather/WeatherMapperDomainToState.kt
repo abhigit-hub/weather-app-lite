@@ -5,6 +5,7 @@ import com.compose.weatherapplite.domain.model.CurrentUnitInfo
 import com.compose.weatherapplite.domain.model.HourlyInfo
 import com.compose.weatherapplite.domain.model.HourlyUnitInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
+import com.compose.weatherapplite.presentation.weather.temp.WeatherType
 
 fun WeatherInfo.toWeatherState(): WeatherState {
     return WeatherState(
@@ -23,7 +24,7 @@ fun CurrentInfo.toCurrent(): CurrentState {
         interval = interval,
         temperature = temperature,
         windspeed = windspeed,
-        weatherCode = weatherCode
+        weatherType = weatherCode.toWeatherType()
     )
 }
 
@@ -42,7 +43,7 @@ fun HourlyInfo.toHourly(): HourlyState {
         temperature = temperature,
         humidity = humidity,
         windspeed = windspeed,
-        weatherCode = weatherCode
+        weatherType = weatherCodes.toWeatherTypeList()
     )
 }
 
@@ -53,4 +54,22 @@ fun HourlyUnitInfo.toHourlyUnit(): HourlyUnitState {
         humidity = humidity,
         windspeed = windspeed
     )
+}
+
+fun Int.toWeatherType(): WeatherType {
+    return when (this) {
+        0 -> WeatherType.ClearSky
+        1,2,3 -> WeatherType.Overcast
+        45,48 -> WeatherType.Foggy
+        51,53,55,56,57 -> WeatherType.Drizzle
+        61,63,65 -> WeatherType.Rain
+        66,67 -> WeatherType.HeavyRain
+        71,73,75 -> WeatherType.SnowFall
+        95,96,99 -> WeatherType.Thunderstorm
+        else -> WeatherType.ClearSky
+    }
+}
+
+fun List<Int>.toWeatherTypeList(): List<WeatherType> {
+    return this.map { it.toWeatherType() }
 }

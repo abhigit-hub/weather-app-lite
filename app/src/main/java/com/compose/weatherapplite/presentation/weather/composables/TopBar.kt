@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.weather.WeatherTempState
+import com.compose.weatherapplite.presentation.weather.temp.WeatherType
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
@@ -86,15 +87,16 @@ fun TopBar(weatherTempState: WeatherTempState) {
 fun TopBarPreview() {
     TopBar(
         weatherTempState = WeatherTempState(
-            "12.34",
-            "11.76",
-            "Pune",
-            "3 November, Friday",
-            "18",
-            "Thunderstorm",
-            "10 m/s",
-            "98%",
-            "100%"
+            latitude = "12.34",
+            longitude = "11.76",
+            city = "Pune",
+            currentDate = "3 November, Friday",
+            currentTemp = "18",
+            currentWeather = "Thunderstorm",
+            currentWeatherType = WeatherType.Thunderstorm,
+            currentWind = "10 m/s",
+            currentHumidity = "98%",
+            currentRain = "100%"
         )
     )
 }

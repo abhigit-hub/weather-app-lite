@@ -36,5 +36,5 @@ data class HourlyInfo(
     val temperature: List<Double>,
     val humidity: List<Int>,
     val windspeed: List<Double>,
-    val weatherCode: List<Int>
+    val weatherCodes: List<Int>
 )

@@ -1,5 +1,7 @@
 package com.compose.weatherapplite.presentation.weather
 
+import com.compose.weatherapplite.presentation.weather.temp.WeatherType
+
 data class WeatherState(
     val latitude: Double,
     val longitude: Double,
@@ -28,7 +30,7 @@ data class CurrentState(
     val interval: Int,
     val temperature: Double,
     val windspeed: Double,
-    val weatherCode: Int
+    val weatherType: WeatherType
 )
 
 data class HourlyState(
@@ -36,5 +38,5 @@ data class HourlyState(
     val temperature: List<Double>,
     val humidity: List<Int>,
     val windspeed: List<Double>,
-    val weatherCode: List<Int>
+    val weatherType: List<WeatherType>
 )

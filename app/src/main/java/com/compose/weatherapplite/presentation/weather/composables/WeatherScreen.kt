@@ -12,6 +12,7 @@ import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.weather.WeatherTempState
 import com.compose.weatherapplite.presentation.weather.WeatherViewModel
 import com.compose.weatherapplite.presentation.weather.temp.WeatherHistoryItemState
+import com.compose.weatherapplite.presentation.weather.temp.WeatherType
 
 @Composable
 fun WeatherScreen(
@@ -21,15 +22,16 @@ fun WeatherScreen(
 
     if (state?.hourlyUnit != null) {
         val weatherTempState = WeatherTempState(
-            "12.930657",
-            "77.7379234",
-            "Pune",
-            "3 November, Friday",
-            "18",
-            "Thunderstorm",
-            "10 m/s",
-            "98%",
-            "100%"
+            latitude = "12.930657",
+            longitude = "77.7379234",
+            city = "Pune",
+            currentDate = "3 November, Friday",
+            currentTemp = "18",
+            currentWeather = "Thunderstorm",
+            currentWeatherType = WeatherType.Thunderstorm,
+            currentWind = "10 m/s",
+            currentHumidity = "98%",
+            currentRain = "100%"
         )
 
         val weatherHistoryItems = listOf(

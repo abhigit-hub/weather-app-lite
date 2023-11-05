@@ -47,7 +47,7 @@ fun HourlyDTO.toHourlyInfo(): HourlyInfo {
         temperature = temperature,
         humidity = humidity,
         windspeed = windspeed,
-        weatherCode = weathercode
+        weatherCodes = weathercodes
     )
 }
 

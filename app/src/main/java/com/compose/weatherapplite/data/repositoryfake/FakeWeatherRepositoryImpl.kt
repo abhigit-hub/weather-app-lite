@@ -47,7 +47,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
                 temperature = fakeTemperatureList,
                 humidity = fakeHumidityList,
                 windspeed = fakeWindspeedList,
-                weatherCode = fakeWeatherCodeList
+                weatherCodes = fakeWeatherCodeList
             )
         )
 
