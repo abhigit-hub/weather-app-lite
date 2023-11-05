@@ -31,7 +31,7 @@ fun WeatherInfo.toCurrentWeatherState(): CurrentWeatherState {
     return CurrentWeatherState(
         date = LocalDate.now().convertToWeatherAppLiteDate(),
         weatherType = current.weatherCode.toWeatherType(),
-        temperature = "${current.temperature} ${currentUnit.temperature}",
+        temperature = "${current.temperature}${currentUnit.temperature}",
         wind = "${current.windspeed} ${currentUnit.windspeed}",
         humidity = "${hourly.humidity[0]}%",
         rain = "${current.weatherCode.toRainLevel()}%"

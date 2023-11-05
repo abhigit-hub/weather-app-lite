@@ -18,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -39,7 +41,7 @@ fun CurrentWeatherView(
             Column(
                 modifier = Modifier
                     .fillMaxHeight(0.17f)
-                    .weight(0.6f)
+                    .weight(0.5f)
             ) {
                 Text(
                     text = currentWeatherState.temperature,
@@ -60,6 +62,7 @@ fun CurrentWeatherView(
                     .size(150.dp)
                     .fillMaxWidth()
                     .weight(0.4f)
+                    .scale(1.25f, 1.25f),
             )
         }
 
@@ -79,7 +82,7 @@ fun CurrentWeatherView(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
+                horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 CurrentWeatherItem(R.drawable.vd_main_wind, currentWeatherState.wind, "Wind")
@@ -102,7 +105,7 @@ fun CurrentWeatherItem(
         Image(
             painter = painterResource(itemDrawable),
             contentDescription = null,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(50.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
