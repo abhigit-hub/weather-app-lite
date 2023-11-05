@@ -1,6 +1,7 @@
 package com.compose.weatherapplite.presentation.weather.composables
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -110,7 +110,7 @@ fun WeatherHistoryItemView(
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(5.dp))
-        Icon(
+        Image(
             painter = painterResource(weatherDrawable),
             contentDescription = null,
             modifier = Modifier.size(50.dp)

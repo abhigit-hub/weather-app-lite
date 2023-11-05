@@ -1,6 +1,7 @@
 package com.compose.weatherapplite.presentation.weather.composables
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.R
+import com.compose.weatherapplite.presentation.utils.toDrawable
 import com.compose.weatherapplite.presentation.weather.WeatherTempState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
@@ -52,8 +52,8 @@ fun CurrentWeatherView(
                 )
             }
 
-            Icon(
-                painter = painterResource(id = R.drawable.vd_menu),
+            Image(
+                painter = painterResource(id = weatherTempState.currentWeatherType.toDrawable()),
                 contentDescription = "Current Weather",
                 modifier = Modifier
                     .size(150.dp)
@@ -81,9 +81,9 @@ fun CurrentWeatherView(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                CurrentWeatherItem(R.drawable.vd_menu, "10 m/s", "Wind")
-                CurrentWeatherItem(R.drawable.vd_menu, "98%", "Humidity")
-                CurrentWeatherItem(R.drawable.vd_menu, "100%", "Rain")
+                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "10 m/s", "Wind")
+                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "98%", "Humidity")
+                CurrentWeatherItem(weatherTempState.currentWeatherType.toDrawable(), "100%", "Rain")
             }
         }
     }
@@ -98,7 +98,7 @@ fun CurrentWeatherItem(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Icon(
+        Image(
             painter = painterResource(itemDrawable),
             contentDescription = null,
             modifier = Modifier.size(40.dp)

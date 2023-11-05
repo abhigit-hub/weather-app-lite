@@ -35,13 +35,13 @@ fun WeatherScreen(
         )
 
         val weatherHistoryItems = listOf(
-            WeatherHistoryItemState("10 am", R.drawable.vd_menu, "16°"),
-            WeatherHistoryItemState("11 am", R.drawable.vd_menu, "18°"),
-            WeatherHistoryItemState("12 pm", R.drawable.vd_menu, "21°"),
-            WeatherHistoryItemState("1 pm", R.drawable.vd_menu, "24°"),
-            WeatherHistoryItemState("2 pm", R.drawable.vd_menu, "23°"),
-            WeatherHistoryItemState("3 pm", R.drawable.vd_menu, "21°"),
-            WeatherHistoryItemState("4 pm", R.drawable.vd_menu, "18°"),
+            WeatherHistoryItemState("10 am", R.drawable.vd_snowfall, "16°"),
+            WeatherHistoryItemState("11 am", R.drawable.vd_thunderstorm, "18°"),
+            WeatherHistoryItemState("12 pm", R.drawable.vd_rain, "21°"),
+            WeatherHistoryItemState("1 pm", R.drawable.vd_clear_sky, "24°"),
+            WeatherHistoryItemState("2 pm", R.drawable.vd_overcast, "23°"),
+            WeatherHistoryItemState("3 pm", R.drawable.vd_drizzle, "21°"),
+            WeatherHistoryItemState("4 pm", R.drawable.vd_heavy_rain, "18°"),
         )
 
         Column(
