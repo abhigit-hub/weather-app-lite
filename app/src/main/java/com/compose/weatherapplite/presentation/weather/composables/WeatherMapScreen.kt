@@ -7,15 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.presentation.weather.WeatherTempState
+import com.compose.weatherapplite.presentation.model.LocationState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
-fun WeatherMapScreen(weatherTempState: WeatherTempState) {
-    val latLng = LatLng(weatherTempState.latitude.toDouble(), weatherTempState.longitude.toDouble())
+fun WeatherMapScreen(locationState: LocationState) {
+    val latLng = LatLng(locationState.latitude, locationState.longitude)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(latLng, 15f)
     }

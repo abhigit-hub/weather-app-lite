@@ -23,8 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.presentation.utils.toDrawable
-import com.compose.weatherapplite.presentation.weather.WeatherTempState
+import com.compose.weatherapplite.utils.toDrawable
+import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
@@ -32,7 +32,7 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
 fun CurrentWeatherView(
-    weatherTempState: WeatherTempState
+    currentWeatherState: CurrentWeatherState
 ) {
     Column {
         Row {
@@ -42,19 +42,19 @@ fun CurrentWeatherView(
                     .weight(0.6f)
             ) {
                 Text(
-                    text = weatherTempState.currentTemp + "°",
+                    text = currentWeatherState.temperature,
                     style = WeatherTypography.displayLarge,
                     color = md_theme_dark_primary,
                 )
                 Text(
-                    text = weatherTempState.currentWeather,
+                    text = currentWeatherState.weatherType.weatherType,
                     style = WeatherTypography.titleLarge,
                     color = md_theme_dark_secondary,
                 )
             }
 
             Image(
-                painter = painterResource(id = weatherTempState.currentWeatherType.toDrawable()),
+                painter = painterResource(id = currentWeatherState.weatherType.toDrawable()),
                 contentDescription = "Current Weather",
                 modifier = Modifier
                     .size(150.dp)
@@ -82,9 +82,9 @@ fun CurrentWeatherView(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                CurrentWeatherItem(R.drawable.vd_main_wind, "10 m/s", "Wind")
-                CurrentWeatherItem(R.drawable.vd_main_humidity, "98%", "Humidity")
-                CurrentWeatherItem(R.drawable.vd_main_rain, "100%", "Rain")
+                CurrentWeatherItem(R.drawable.vd_main_wind, currentWeatherState.wind, "Wind")
+                CurrentWeatherItem(R.drawable.vd_main_humidity, currentWeatherState.humidity, "Humidity")
+                CurrentWeatherItem(R.drawable.vd_main_rain, currentWeatherState.rain, "Rain")
             }
         }
     }

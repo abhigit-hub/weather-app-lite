@@ -23,17 +23,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.presentation.weather.temp.WeatherHistoryItemState
-import com.compose.weatherapplite.presentation.weather.temp.WeatherMenuSelectorType
+import com.compose.weatherapplite.presentation.model.PastDatedWeatherState
+import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
+import com.compose.weatherapplite.utils.toDrawable
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
 import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
+import com.compose.weatherapplite.utils.toTimeInTheDay
 
 @Composable
 fun WeatherHistoryQuickView(
-    weatherHistoryItems: List<WeatherHistoryItemState>
+    pastDatedWeatherListState: List<PastDatedWeatherState>
 ) {
     Row {
         WeatherHistorySelectorView(
@@ -55,12 +57,12 @@ fun WeatherHistoryQuickView(
     Spacer(modifier = Modifier.height(40.dp))
 
     LazyRow {
-        items(weatherHistoryItems.size) { index ->
-            val item = weatherHistoryItems[index]
+        items(pastDatedWeatherListState.size) { index ->
+            val item = pastDatedWeatherListState[index]
 
             WeatherHistoryItemView(
-                weatherDrawable = item.drawable,
-                weatherTime = item.time,
+                weatherDrawable = item.weatherCode.toDrawable(),
+                weatherTime = item.time.toTimeInTheDay(),
                 temperature = item.temperature
             )
         }
@@ -117,7 +119,7 @@ fun WeatherHistoryItemView(
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
-            text = temperature,
+            text = "$temperature°",
             style = WeatherTypography.titleLarge,
             fontWeight = FontWeight.Bold,
             color = md_theme_dark_primary,

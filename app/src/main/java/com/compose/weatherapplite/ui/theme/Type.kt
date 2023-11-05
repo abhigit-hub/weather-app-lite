@@ -47,7 +47,7 @@ val russoOneTextStyle = TextStyle(
 
 val WeatherTypography = Typography(
     displayLarge = russoOneTextStyle.copy(
-        fontSize = 110.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp
+        fontSize = 90.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp
     ),
     displayMedium = russoOneTextStyle.copy(
         fontSize = 45.sp, lineHeight = 52.sp, letterSpacing = 0.sp

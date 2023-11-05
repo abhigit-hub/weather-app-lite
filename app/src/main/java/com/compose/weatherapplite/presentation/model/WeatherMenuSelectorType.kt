@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.temp
+package com.compose.weatherapplite.presentation.model
 
 sealed class WeatherMenuSelectorType(val weatherType: String) {
     object WeatherMenuSelectorTypeToday: WeatherMenuSelectorType("Today")

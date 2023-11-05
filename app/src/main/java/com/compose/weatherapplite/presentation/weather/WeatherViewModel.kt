@@ -7,6 +7,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.weatherapplite.domain.repository.WeatherRepository
+import com.compose.weatherapplite.presentation.mapper.toWeatherState
+import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -1,7 +1,7 @@
-package com.compose.weatherapplite.presentation.utils
+package com.compose.weatherapplite.utils
 
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.presentation.weather.temp.WeatherType
+import com.compose.weatherapplite.presentation.model.WeatherType
 
 fun WeatherType.toDrawable(): Int {
     return when (this) {

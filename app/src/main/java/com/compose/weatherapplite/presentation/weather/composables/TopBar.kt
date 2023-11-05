@@ -18,14 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.presentation.weather.WeatherTempState
-import com.compose.weatherapplite.presentation.weather.temp.WeatherType
+import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
@@ -33,7 +30,7 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
 import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
-fun TopBar(weatherTempState: WeatherTempState) {
+fun TopBar(weatherState: WeatherState) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,14 +45,14 @@ fun TopBar(weatherTempState: WeatherTempState) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = weatherTempState.city,
+                text = weatherState.locationState.cityName,
                 color = md_theme_dark_primary,
                 style = WeatherTypography.headlineSmall,
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = weatherTempState.currentDate,
+                text = weatherState.currentWeatherState.date,
                 color = md_theme_dark_secondary,
                 style = WeatherTypography.bodyLarge,
                 fontWeight = FontWeight.Bold,
@@ -80,23 +77,4 @@ fun TopBar(weatherTempState: WeatherTempState) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun TopBarPreview() {
-    TopBar(
-        weatherTempState = WeatherTempState(
-            latitude = "12.34",
-            longitude = "11.76",
-            city = "Pune",
-            currentDate = "3 November, Friday",
-            currentTemp = "18",
-            currentWeather = "Thunderstorm",
-            currentWeatherType = WeatherType.Thunderstorm,
-            currentWind = "10 m/s",
-            currentHumidity = "98%",
-            currentRain = "100%"
-        )
-    )
 }

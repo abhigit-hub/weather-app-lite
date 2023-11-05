@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.temp
+package com.compose.weatherapplite.presentation.model
 
 sealed class WeatherType(val weatherType: String) {
     object ClearSky: WeatherType("Clear Sky")
