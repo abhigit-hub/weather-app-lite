@@ -3,6 +3,7 @@ package com.compose.weatherapplite.presentation.weather.composables
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,8 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.presentation.model.WeatherItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
+import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.toDrawable
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
@@ -35,30 +36,46 @@ import com.compose.weatherapplite.utils.toTimeInTheDay
 
 @Composable
 fun WeatherHistoryQuickView(
-    pastDatedWeatherListState: List<WeatherItemMetaState>
+    weatherState: WeatherState,
+    onItemClick: (WeatherMenuSelectorType) -> Unit
 ) {
     Row {
         WeatherHistorySelectorView(
             weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
-            isSelected = true
+            isSelected = weatherState.weatherMenuSelectorType == WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
+            onItemClick = {
+                onItemClick(WeatherMenuSelectorType.WeatherMenuSelectorTypeToday)
+            }
         )
         Spacer(modifier = Modifier.width(20.dp))
         WeatherHistorySelectorView(
             weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow,
-            isSelected = false
+            isSelected = weatherState.weatherMenuSelectorType == WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow,
+            onItemClick = {
+                onItemClick(WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow)
+            }
         )
         Spacer(modifier = Modifier.width(20.dp))
         WeatherHistorySelectorView(
             weatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays,
-            isSelected = false
+            isSelected = weatherState.weatherMenuSelectorType == WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays,
+            onItemClick = {
+                onItemClick(WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays)
+            }
         )
     }
 
     Spacer(modifier = Modifier.height(40.dp))
 
+    val weatherListItems = when (weatherState.weatherMenuSelectorType) {
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeToday -> weatherState.currentWeatherState.todaysWeatherItemListState
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> weatherState.tomorrowWeatherItemListState
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> weatherState.nextTenDaysWeatherItemListState
+    }
+
     LazyRow {
-        items(pastDatedWeatherListState.size) { index ->
-            val item = pastDatedWeatherListState[index]
+        items(weatherListItems.size) { index ->
+            val item = weatherListItems[index]
 
             WeatherHistoryItemView(
                 weatherDrawable = item.weatherCode.toDrawable(),
@@ -70,9 +87,14 @@ fun WeatherHistoryQuickView(
 }
 
 @Composable
-fun WeatherHistorySelectorView(weatherMenuSelectorType: WeatherMenuSelectorType, isSelected: Boolean) {
+fun WeatherHistorySelectorView(
+    weatherMenuSelectorType: WeatherMenuSelectorType,
+    isSelected: Boolean,
+    onItemClick: () -> Unit
+) {
    Column(
-       horizontalAlignment = Alignment.CenterHorizontally
+       horizontalAlignment = Alignment.CenterHorizontally,
+       modifier = Modifier.clickable { onItemClick() }
    ) {
        Text(
            text = weatherMenuSelectorType.weatherType,

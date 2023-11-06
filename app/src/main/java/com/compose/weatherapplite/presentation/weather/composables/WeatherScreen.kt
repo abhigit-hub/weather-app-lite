@@ -14,18 +14,21 @@ import com.compose.weatherapplite.presentation.weather.WeatherViewModel
 fun WeatherScreen(
     viewModel: WeatherViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state
+    val weatherState = viewModel.state
 
-    if (state != null) {
-        Column(
-            modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
-        ) {
-            TopBar(weatherState = state)
-            CurrentWeatherView(state.currentWeatherState)
-            Spacer(modifier = Modifier.height(40.dp))
-            WeatherHistoryQuickView(state.currentWeatherState.todaysWeatherItemListState)
-            Spacer(modifier = Modifier.height(40.dp))
-            WeatherMapScreen(locationState = state.locationState)
-        }
+    Column(
+        modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
+    ) {
+        TopBar(weatherState = weatherState)
+        CurrentWeatherView(currentWeatherState = weatherState.currentWeatherState)
+        Spacer(modifier = Modifier.height(40.dp))
+        WeatherHistoryQuickView(
+            weatherState = weatherState,
+            onItemClick = {
+                viewModel.updateWeatherMenuSelectorType(it)
+            }
+        )
+        Spacer(modifier = Modifier.height(40.dp))
+        WeatherMapScreen(locationState = weatherState.locationState)
     }
 }

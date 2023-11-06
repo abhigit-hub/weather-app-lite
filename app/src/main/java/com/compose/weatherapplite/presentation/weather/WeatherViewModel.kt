@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import com.compose.weatherapplite.presentation.mapper.toWeatherState
+import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +24,7 @@ class WeatherViewModel @Inject constructor(
         val TAG: String = WeatherViewModel::class.java.simpleName
     }
 
-    var state by mutableStateOf<WeatherState?>(null)
+    var state by mutableStateOf(WeatherState())
 
     init {
         initiateApiRequest()
@@ -51,6 +52,14 @@ class WeatherViewModel @Inject constructor(
                 }
                 else -> Unit
             }
+        }
+    }
+
+    fun updateWeatherMenuSelectorType(weatherMenuSelectorType: WeatherMenuSelectorType) {
+        state?.let {
+            state = state.copy(
+                weatherMenuSelectorType = weatherMenuSelectorType
+            )
         }
     }
 }

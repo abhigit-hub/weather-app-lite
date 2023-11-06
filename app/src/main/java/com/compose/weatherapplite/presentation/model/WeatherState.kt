@@ -3,26 +3,27 @@ package com.compose.weatherapplite.presentation.model
 import java.time.LocalDateTime
 
 data class WeatherState(
-    val locationState: LocationState,
-    val currentWeatherState: CurrentWeatherState,
-    val tomorrowWeatherItemListState: List<WeatherItemMetaState>,
-    val nextTenDaysWeatherItemListState: List<WeatherItemMetaState>,
+    val weatherMenuSelectorType: WeatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
+    val locationState: LocationState = LocationState(),
+    val currentWeatherState: CurrentWeatherState = CurrentWeatherState(),
+    val tomorrowWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
+    val nextTenDaysWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
 )
 
 data class LocationState(
-    val latitude: Double,
-    val longitude: Double,
-    val cityName: String
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0,
+    val cityName: String = ""
 )
 
 data class CurrentWeatherState(
-    val date: String,
-    val weatherType: WeatherType,
-    val temperature: String,
-    val wind: String,
-    val humidity: String,
-    val rain: String,
-    val todaysWeatherItemListState: List<WeatherItemMetaState>
+    val date: String = "",
+    val weatherType: WeatherType = WeatherType.ClearSky,
+    val temperature: String = "",
+    val wind: String = "",
+    val humidity: String = "",
+    val rain: String = "",
+    val todaysWeatherItemListState: List<WeatherItemMetaState> = emptyList()
 )
 
 data class WeatherItemMetaState(
