@@ -15,18 +15,21 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
 fun WeatherMapScreen(locationState: LocationState) {
-    val latLng = LatLng(locationState.latitude, locationState.longitude)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(latLng, 15f)
-    }
+    if (locationState.latitude != 0.0 && locationState.longitude != 0.0) {
 
-    GoogleMap(
-        modifier = Modifier
-            .fillMaxHeight()
-            .padding(bottom = 20.dp)
-            .clip(RoundedCornerShape(30.dp)),
-        cameraPositionState = cameraPositionState,
-    ) {
+        val latLng = LatLng(locationState.latitude, locationState.longitude)
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition.fromLatLngZoom(latLng, 15f)
+        }
 
+        GoogleMap(
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(bottom = 20.dp)
+                .clip(RoundedCornerShape(30.dp)),
+            cameraPositionState = cameraPositionState,
+        ) {
+
+        }
     }
 }

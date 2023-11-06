@@ -12,15 +12,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-/*    @Binds
+    @Binds
     @Singleton
     abstract fun bindWeatherRepository(
         weatherRepositoryImpl: WeatherRepositoryImpl
-    ): WeatherRepository*/
+    ): WeatherRepository
 
-    @Binds
+    /*@Binds
     @Singleton
     abstract fun bindFakeWeatherRepository(
         fakeWeatherRepositoryImpl: FakeWeatherRepositoryImpl
-    ): WeatherRepository
+    ): WeatherRepository*/
 }
