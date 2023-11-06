@@ -2,6 +2,8 @@ package com.compose.weatherapplite.utils
 
 import java.lang.StringBuilder
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 fun LocalDate.convertToWeatherAppLiteDate(): String {
     val sb = StringBuilder()
@@ -10,12 +12,14 @@ fun LocalDate.convertToWeatherAppLiteDate(): String {
     return sb.toString()
 }
 
-fun String.toTimeInTheDay(): String {
-    val processedString = this.dropLast(3).takeLast(2)
-    val time = processedString.toInt()
-    val ampm = if (time >= 12) "pm" else "am"
-
-    val finalTime = if (time > 12) time - 12 else if (time == 0) 12 else time
+fun LocalDateTime.toTimeInTheDay(): String {
+    val ampm = if (hour >= 12) "pm" else "am"
+    val finalTime = if (hour > 12) hour - 12 else if (hour == 0) 12 else hour
 
     return "$finalTime $ampm"
+}
+
+fun String.toLocalDate(): LocalDateTime {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
+    return LocalDateTime.parse(this, formatter)
 }

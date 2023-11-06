@@ -23,7 +23,7 @@ fun WeatherScreen(
             TopBar(weatherState = state)
             CurrentWeatherView(state.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
-            WeatherHistoryQuickView(state.pastDatedWeatherListState)
+            WeatherHistoryQuickView(state.currentWeatherState.todaysWeatherItemListState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherMapScreen(locationState = state.locationState)
         }

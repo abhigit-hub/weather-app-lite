@@ -10,6 +10,7 @@ import com.compose.weatherapplite.domain.model.CurrentUnitInfo
 import com.compose.weatherapplite.domain.model.HourlyInfo
 import com.compose.weatherapplite.domain.model.HourlyUnitInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
+import com.compose.weatherapplite.utils.toLocalDate
 
 fun WeatherDTO.toWeatherInfo(): WeatherInfo {
     return WeatherInfo(
@@ -43,7 +44,7 @@ fun CurrentUnitDTO.toCurrentUnitInfo(): CurrentUnitInfo {
 
 fun HourlyDTO.toHourlyInfo(): HourlyInfo {
     return HourlyInfo(
-        time = time,
+        time = time.map { it.toLocalDate() },
         temperature = temperature,
         humidity = humidity,
         windspeed = windspeed,

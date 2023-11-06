@@ -1,5 +1,7 @@
 package com.compose.weatherapplite.domain.model
 
+import java.time.LocalDateTime
+
 data class WeatherInfo(
     val latitude: Double,
     val longitude: Double,
@@ -32,7 +34,7 @@ data class CurrentInfo(
 )
 
 data class HourlyInfo(
-    val time: List<String>,
+    val time: List<LocalDateTime>,
     val temperature: List<Double>,
     val humidity: List<Int>,
     val windspeed: List<Double>,

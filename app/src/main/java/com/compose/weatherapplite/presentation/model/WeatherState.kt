@@ -1,10 +1,12 @@
 package com.compose.weatherapplite.presentation.model
 
+import java.time.LocalDateTime
+
 data class WeatherState(
     val locationState: LocationState,
     val currentWeatherState: CurrentWeatherState,
-    val pastDatedWeatherListState: List<PastDatedWeatherState>,
-    val pastDatedWeatherStateComplete: PastDatedWeatherStateComplete
+    val tomorrowWeatherItemListState: List<WeatherItemMetaState>,
+    val nextTenDaysWeatherItemListState: List<WeatherItemMetaState>,
 )
 
 data class LocationState(
@@ -19,19 +21,12 @@ data class CurrentWeatherState(
     val temperature: String,
     val wind: String,
     val humidity: String,
-    val rain: String
+    val rain: String,
+    val todaysWeatherItemListState: List<WeatherItemMetaState>
 )
 
-data class PastDatedWeatherStateComplete(
-    val time: List<String>,
-    val temperature: List<Double>,
-    val humidity: List<Int>,
-    val windspeed: List<Double>,
-    val weatherCodes: List<WeatherType>
-)
-
-data class PastDatedWeatherState(
-    val time: String,
+data class WeatherItemMetaState(
+    val time: LocalDateTime,
     val temperature: String,
     val weatherCode: WeatherType
 )

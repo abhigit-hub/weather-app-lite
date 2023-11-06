@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.presentation.model.PastDatedWeatherState
+import com.compose.weatherapplite.presentation.model.WeatherItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.utils.toDrawable
 import com.compose.weatherapplite.ui.theme.WeatherTypography
@@ -35,7 +35,7 @@ import com.compose.weatherapplite.utils.toTimeInTheDay
 
 @Composable
 fun WeatherHistoryQuickView(
-    pastDatedWeatherListState: List<PastDatedWeatherState>
+    pastDatedWeatherListState: List<WeatherItemMetaState>
 ) {
     Row {
         WeatherHistorySelectorView(

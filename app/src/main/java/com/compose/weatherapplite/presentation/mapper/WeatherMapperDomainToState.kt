@@ -1,21 +1,23 @@
 package com.compose.weatherapplite.presentation.mapper
 
+import com.compose.weatherapplite.domain.model.HourlyInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.presentation.model.LocationState
-import com.compose.weatherapplite.presentation.model.PastDatedWeatherState
-import com.compose.weatherapplite.presentation.model.PastDatedWeatherStateComplete
+import com.compose.weatherapplite.presentation.model.WeatherItemMetaState
+import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.model.WeatherType
 import com.compose.weatherapplite.utils.convertToWeatherAppLiteDate
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 fun WeatherInfo.toWeatherState(): WeatherState {
     return WeatherState(
         locationState = this.toLocationState(),
         currentWeatherState = this.toCurrentWeatherState(),
-        pastDatedWeatherListState = this.toPastDatedWeatherListState(),
-        pastDatedWeatherStateComplete = this.toPastDatedWeatherState()
+        tomorrowWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow),
+        nextTenDaysWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays),
     )
 }
 
@@ -23,6 +25,7 @@ fun WeatherInfo.toLocationState(): LocationState {
     return LocationState(
         latitude = latitude,
         longitude = longitude,
+
         cityName = "Berlin, Germany"
     )
 }
@@ -34,33 +37,69 @@ fun WeatherInfo.toCurrentWeatherState(): CurrentWeatherState {
         temperature = "${current.temperature}${currentUnit.temperature}",
         wind = "${current.windspeed} ${currentUnit.windspeed}",
         humidity = "${hourly.humidity[0]}%",
-        rain = "${current.weatherCode.toRainLevel()}%"
+        rain = "${current.weatherCode.toRainLevel()}%",
+        todaysWeatherItemListState = hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeToday)
     )
 }
 
-fun WeatherInfo.toPastDatedWeatherState(): PastDatedWeatherStateComplete {
-    return PastDatedWeatherStateComplete(
-        time = hourly.time,
-        temperature = hourly.temperature,
-        humidity = hourly.humidity,
-        windspeed = hourly.windspeed,
-        weatherCodes = hourly.weatherCodes.toWeatherTypeList()
-    )
-}
+fun HourlyInfo.toWeatherItemListState(weatherMenuSelectorType: WeatherMenuSelectorType): List<WeatherItemMetaState> {
+    val weatherItemList = mutableListOf<WeatherItemMetaState>()
 
-fun WeatherInfo.toPastDatedWeatherListState(): List<PastDatedWeatherState> {
-    val pastDatedWeatherListState = mutableListOf<PastDatedWeatherState>()
-
-    for (index in 0..hourly.weatherCodes.size - 1) {
-        val pastDatedWeatherState = PastDatedWeatherState(
-            time = hourly.time[index],
-            temperature = hourly.temperature[index].toString(),
-            weatherCode = hourly.weatherCodes[index].toWeatherType(),
-        )
-        pastDatedWeatherListState.add(pastDatedWeatherState)
+    time.forEachIndexed { index, dateToBeChecked ->
+        if (checkDates(weatherMenuSelectorType, dateToBeChecked))
+            weatherItemList.add(
+                WeatherItemMetaState(
+                    time = time[index],
+                    temperature = temperature[index].toString(),
+                    weatherCode = weatherCodes[index].toWeatherType()
+                )
+            )
     }
 
-    return pastDatedWeatherListState
+    return weatherItemList
+}
+
+private fun checkDates(
+    weatherMenuSelectorType: WeatherMenuSelectorType,
+    dateToBeChecked: LocalDateTime
+): Boolean {
+    val filterDate: LocalDate = when (weatherMenuSelectorType) {
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeToday -> {
+            LocalDate.now()
+        }
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> {
+            LocalDate.now().plusDays(1)
+        }
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
+            LocalDate.now().plusDays(10)
+        }
+    }
+
+    return when (weatherMenuSelectorType) {
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> {
+            checkIfDateMatches(localDate = dateToBeChecked.toLocalDate(), filterDate = filterDate)
+        }
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
+            checkIfDateRangeMatches(
+                localDate = dateToBeChecked.toLocalDate(),
+                filterDate1 = LocalDate.now(),
+                filterDate2 = filterDate
+            )
+        }
+    }
+}
+
+private fun checkIfDateMatches(localDate: LocalDate, filterDate: LocalDate): Boolean {
+    return localDate.isEqual(filterDate)
+}
+
+private fun checkIfDateRangeMatches(
+    localDate: LocalDate,
+    filterDate1: LocalDate,
+    filterDate2: LocalDate
+): Boolean {
+    return localDate.isAfter(filterDate1) && localDate.isBefore(filterDate2)
 }
 
 fun Int.toWeatherType(): WeatherType {
@@ -89,8 +128,4 @@ fun Int.toRainLevel(): Int {
         95,96,99 -> 80
         else -> 0
     }
-}
-
-fun List<Int>.toWeatherTypeList(): List<WeatherType> {
-    return this.map { it.toWeatherType() }
 }
