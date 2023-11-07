@@ -7,17 +7,20 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.weatherapplite.domain.repository.WeatherRepository
+import com.compose.weatherapplite.manager.WeatherLocationManager
 import com.compose.weatherapplite.presentation.mapper.toWeatherState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
-    private val repository: WeatherRepository
+    private val repository: WeatherRepository,
+    private val weatherLocationManager: WeatherLocationManager
 ): ViewModel() {
 
     companion object {
@@ -25,16 +28,14 @@ class WeatherViewModel @Inject constructor(
     }
 
     var state by mutableStateOf(WeatherState())
+    var firstTimeRequest = AtomicBoolean(false)
 
-    init {
-        initiateApiRequest()
-    }
-
-    private fun initiateApiRequest() {
+    fun initiateApiRequest(latitude: Double, longitude: Double) {
+        Log.d(TAG, "initiateApiRequest() ==> (latitude = $latitude, longitude = $longitude)")
         viewModelScope.launch {
             val response = repository.getWeatherForecastAndCurrent(
-                latitude = "18.5892864",
-                longitude = "73.7476608"
+                latitude = latitude.toString(),
+                longitude = longitude.toString()
             )
 
             when (response) {
@@ -61,5 +62,9 @@ class WeatherViewModel @Inject constructor(
                 weatherMenuSelectorType = weatherMenuSelectorType
             )
         }
+    }
+
+    fun getWeatherLocationManager(): WeatherLocationManager {
+        return weatherLocationManager
     }
 }

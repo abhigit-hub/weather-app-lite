@@ -87,4 +87,7 @@ dependencies {
 
     // Accompanist - Permission
     implementation(libs.accompanist.permission)
+
+    // Play Services - Location
+    implementation(libs.playservices.location)
 }

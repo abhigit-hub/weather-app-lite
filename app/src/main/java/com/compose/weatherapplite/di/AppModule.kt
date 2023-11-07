@@ -1,9 +1,12 @@
 package com.compose.weatherapplite.di
 
+import android.content.Context
 import com.compose.weatherapplite.data.remote.WeatherApi
+import com.compose.weatherapplite.manager.WeatherLocationManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,5 +35,11 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesWeatherLocationManager(@ApplicationContext appContext: Context): WeatherLocationManager {
+        return WeatherLocationManager(appContext)
     }
 }

@@ -24,7 +24,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherScreen(
-    viewModel: WeatherViewModel = hiltViewModel()
+    viewModel: WeatherViewModel = hiltViewModel(),
 ) {
     val locationPermissionState = rememberMultiplePermissionsState(listOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -32,7 +32,13 @@ fun WeatherScreen(
     ))
 
     if (locationPermissionState.allPermissionsGranted) {
+        if (!viewModel.firstTimeRequest.getAndSet(true)) {
+            viewModel.getWeatherLocationManager().registerForLocationUpdates {
+                viewModel.initiateApiRequest(it.latitude, it.longitude)
+            }
+        }
         val weatherState = viewModel.state
+
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
