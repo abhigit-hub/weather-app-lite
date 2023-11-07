@@ -84,4 +84,7 @@ dependencies {
 
     // Compose - Map
     implementation(libs.compose.map)
+
+    // Accompanist - Permission
+    implementation(libs.accompanist.permission)
 }
