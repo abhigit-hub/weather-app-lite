@@ -1,6 +1,9 @@
 package com.compose.weatherapplite.data.repositoryfake
 
+import com.compose.weatherapplite.data.remote.GeoCodingApi
 import com.compose.weatherapplite.data.remote.WeatherApi
+import com.compose.weatherapplite.data.remote.dto.AddressDTO
+import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
 import com.compose.weatherapplite.domain.model.CurrentInfo
 import com.compose.weatherapplite.domain.model.CurrentUnitInfo
 import com.compose.weatherapplite.domain.model.HourlyInfo
@@ -14,7 +17,8 @@ import javax.inject.Singleton
 
 @Singleton
 class FakeWeatherRepositoryImpl @Inject constructor(
-    private val api: WeatherApi
+    private val weatherApi: WeatherApi,
+    private val geoCodingApi: GeoCodingApi
 ): WeatherRepository {
 
     override suspend fun getWeatherForecastAndCurrent(
@@ -53,6 +57,13 @@ class FakeWeatherRepositoryImpl @Inject constructor(
         )
 
         return Resource.Success(data = weatherInfo)
+    }
+
+    override suspend fun getLocalityBasedOnCoordinates(
+        latitude: String,
+        longitude: String
+    ): Resource<GoogleGeoCodingDTO> {
+        return Resource.Success(data = fakeGeoCodingLocationBangalore)
     }
 
     companion object {
@@ -905,6 +916,97 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             3,
             3,
             3
+        )
+
+        val fakeGeoCodingLocationPune = GoogleGeoCodingDTO(
+            plusCode = null,
+            results = listOf(
+                AddressDTO(
+                    formattedAddress = "Pimpri-Chinchwad, Maharashtra, India",
+                    types = listOf(
+                        "locality",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Mulshi-Paud, Maharashtra, India",
+                    types = listOf(
+                        "administrative_area_level_4",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Pune, Maharashtra, India",
+                    types = listOf(
+                        "administrative_area_level_3",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Pune Division, Maharashtra, India",
+                    types = listOf(
+                        "administrative_area_level_2",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Maharashtra, India",
+                    types = listOf(
+                        "administrative_area_level_1",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "India",
+                    types = listOf(
+                        "country",
+                        "political"
+                    )
+                )
+            ),
+            status = "OK"
+        )
+
+        val fakeGeoCodingLocationBangalore = GoogleGeoCodingDTO(
+            plusCode = null,
+            results = listOf(
+                AddressDTO(
+                    formattedAddress = "Bengaluru, Karnataka, India",
+                    types = listOf(
+                        "locality",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Bengaluru Urban, Karnataka, India",
+                    types = listOf(
+                        "administrative_area_level_3",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Bangalore Division, Karnataka, India",
+                    types = listOf(
+                        "administrative_area_level_2",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "Karnataka, India",
+                    types = listOf(
+                        "administrative_area_level_1",
+                        "political"
+                    )
+                ),
+                AddressDTO(
+                    formattedAddress = "India",
+                    types = listOf(
+                        "country",
+                        "political"
+                    )
+                )
+            ),
+            status = "OK"
         )
     }
 }

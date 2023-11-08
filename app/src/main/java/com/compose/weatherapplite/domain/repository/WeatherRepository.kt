@@ -1,5 +1,6 @@
 package com.compose.weatherapplite.domain.repository
 
+import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.utils.Resource
 
@@ -8,4 +9,9 @@ interface WeatherRepository {
         latitude: String,
         longitude: String
     ): Resource<WeatherInfo>
+
+    suspend fun getLocalityBasedOnCoordinates(
+        latitude: String,
+        longitude: String
+    ): Resource<GoogleGeoCodingDTO>
 }

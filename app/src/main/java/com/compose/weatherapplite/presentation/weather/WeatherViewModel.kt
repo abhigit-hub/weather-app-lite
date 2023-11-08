@@ -6,6 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.compose.weatherapplite.data.remote.GeoCodingApi
+import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
+import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import com.compose.weatherapplite.manager.WeatherLocationManager
 import com.compose.weatherapplite.presentation.mapper.toWeatherState
@@ -13,7 +16,9 @@ import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
@@ -33,26 +38,94 @@ class WeatherViewModel @Inject constructor(
     fun initiateApiRequest(latitude: Double, longitude: Double) {
         Log.d(TAG, "initiateApiRequest() ==> (latitude = $latitude, longitude = $longitude)")
         viewModelScope.launch {
-            val response = repository.getWeatherForecastAndCurrent(
-                latitude = latitude.toString(),
-                longitude = longitude.toString()
-            )
+            var responseForWeatherApi: Resource<WeatherInfo>
+            var responseForGeoCodingApi: Resource<GoogleGeoCodingDTO>
 
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { weatherInfo ->
-                        Log.d(TAG, "API Response: Success ==>")
-                        Log.d(TAG, "$weatherInfo")
-
-                        state = weatherInfo.toWeatherState()
-                    }
-                }
-                is Resource.Error -> {
-                    Log.d(TAG, "API Response: Error ==>")
-                    Log.d(TAG, "${response.message}")
-                }
-                else -> Unit
+            val callWeatherApi = async {
+                repository.getWeatherForecastAndCurrent(
+                    latitude = latitude.toString(),
+                    longitude = longitude.toString()
+                )
             }
+
+            val callGeoCodingApi = async {
+                repository.getLocalityBasedOnCoordinates(
+                    latitude = latitude.toString(),
+                    longitude = longitude.toString()
+                )
+            }
+
+            try {
+                responseForWeatherApi = callWeatherApi.await()
+                processWeatherApiResponse(responseForWeatherApi)
+            } catch (e: HttpException) {
+                Log.d(TAG, "Weather API Response: Error ==>")
+                e.printStackTrace()
+            }
+
+            try {
+                responseForGeoCodingApi = callGeoCodingApi.await()
+                processGeoCodingApiResponse(responseForGeoCodingApi)
+            } catch (e: HttpException) {
+                Log.d(TAG, "GeoCoding API Response: Error ==>")
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun processGeoCodingApiResponse(responseForGeoCodingApi: Resource<GoogleGeoCodingDTO>) {
+        when (responseForGeoCodingApi) {
+            is Resource.Success -> {
+                responseForGeoCodingApi.data?.let { geoCodingDto ->
+                    Log.d(TAG, "API Response: Success ==>")
+                    Log.d(TAG, "${geoCodingDto.results}")
+
+                    val cityName = geoCodingDto.results.filter {
+                        it.types.contains(GeoCodingApi.ADDITIONAL_QUERY_PARAMS_FOR_RESULT_TYPE)
+                    }[0].formattedAddress
+
+                    state = state.copy(
+                        locationState = state.locationState.copy(
+                            cityName = cityName
+                        )
+                    )
+                }
+            }
+
+            is Resource.Error -> {
+                Log.d(TAG, "API Response: Error ==>")
+                Log.d(TAG, "${responseForGeoCodingApi.message}")
+            }
+
+            else -> Unit
+        }
+    }
+
+    private fun processWeatherApiResponse(responseForWeatherApi: Resource<WeatherInfo>) {
+        when (responseForWeatherApi) {
+            is Resource.Success -> {
+                responseForWeatherApi.data?.let { weatherInfo ->
+                    Log.d(TAG, "API Response: Success ==>")
+                    Log.d(TAG, "$weatherInfo")
+
+                    val weatherState = weatherInfo.toWeatherState()
+
+                    state = state.copy(
+                        locationState = weatherState.locationState,
+                        weatherMenuSelectorType = weatherState.weatherMenuSelectorType,
+                        currentWeatherState = weatherState.currentWeatherState,
+                        nextTenDaysWeatherItemListState = weatherState.nextTenDaysWeatherItemListState,
+                        tomorrowWeatherItemListState = weatherState.tomorrowWeatherItemListState
+                    )
+                }
+            }
+
+            is Resource.Error -> {
+                Log.d(TAG, "API Response: Error ==>")
+                Log.d(TAG, "${responseForWeatherApi.message}")
+            }
+
+            else -> Unit
         }
     }
 
