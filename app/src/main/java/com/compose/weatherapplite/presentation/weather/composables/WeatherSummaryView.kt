@@ -18,77 +18,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.utils.toDrawable
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
-fun CurrentWeatherView(
-    currentWeatherState: CurrentWeatherState
-) {
-    Column {
-        Row {
-            Column(
-                modifier = Modifier
-                    .fillMaxHeight(0.17f)
-                    .weight(0.5f)
-            ) {
-                Text(
-                    text = currentWeatherState.temperature,
-                    style = WeatherTypography.displayLarge,
-                    color = md_theme_dark_primary,
-                )
-                Text(
-                    text = currentWeatherState.weatherType.weatherType,
-                    style = WeatherTypography.titleLarge,
-                    color = md_theme_dark_secondary,
-                )
-            }
-
-            Image(
-                painter = painterResource(id = currentWeatherState.weatherType.toDrawable()),
-                contentDescription = "Current Weather",
-                modifier = Modifier
-                    .size(150.dp)
-                    .fillMaxWidth()
-                    .weight(0.4f)
-                    .scale(1.25f, 1.25f),
+fun WeatherSummaryView(currentWeatherState: CurrentWeatherState) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.2f)
+            .clip(RoundedCornerShape(15.dp))
+            .shadow(
+                elevation = 30.dp,
+                shape = RoundedCornerShape(15.dp)
             )
-        }
+            .background(md_theme_dark_primaryContainer)
 
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Box(
+    ) {
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.2f)
-                .clip(RoundedCornerShape(15.dp))
-                .shadow(
-                    elevation = 30.dp,
-                    shape = RoundedCornerShape(15.dp)
-                )
-                .background(md_theme_dark_primaryContainer)
-
+                .fillMaxHeight(),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                horizontalArrangement = Arrangement.SpaceAround,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                CurrentWeatherItem(R.drawable.vd_main_wind, currentWeatherState.wind, "Wind")
-                CurrentWeatherItem(R.drawable.vd_main_humidity, currentWeatherState.humidity, "Humidity")
-                CurrentWeatherItem(R.drawable.vd_main_rain, currentWeatherState.rain, "Rain")
-            }
+            CurrentWeatherItem(R.drawable.vd_main_wind, currentWeatherState.wind, "Wind")
+            CurrentWeatherItem(
+                R.drawable.vd_main_humidity,
+                currentWeatherState.humidity,
+                "Humidity"
+            )
+            CurrentWeatherItem(R.drawable.vd_main_rain, currentWeatherState.rain, "Rain")
         }
     }
 }

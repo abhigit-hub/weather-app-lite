@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.composables
+package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

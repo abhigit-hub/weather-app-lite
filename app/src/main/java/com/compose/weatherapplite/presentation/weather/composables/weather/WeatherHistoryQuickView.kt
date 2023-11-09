@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.composables
+package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

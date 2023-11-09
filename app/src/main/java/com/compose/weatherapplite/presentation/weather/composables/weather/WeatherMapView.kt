@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.composables
+package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
