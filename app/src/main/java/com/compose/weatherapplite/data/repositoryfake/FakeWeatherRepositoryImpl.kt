@@ -1,11 +1,13 @@
 package com.compose.weatherapplite.data.repositoryfake
 
+import com.compose.weatherapplite.data.mapper.toGeoCodingInfo
 import com.compose.weatherapplite.data.remote.GeoCodingApi
 import com.compose.weatherapplite.data.remote.WeatherApi
 import com.compose.weatherapplite.data.remote.dto.AddressDTO
 import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
 import com.compose.weatherapplite.domain.model.CurrentInfo
 import com.compose.weatherapplite.domain.model.CurrentUnitInfo
+import com.compose.weatherapplite.domain.model.GeoCodingInfo
 import com.compose.weatherapplite.domain.model.HourlyInfo
 import com.compose.weatherapplite.domain.model.HourlyUnitInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
@@ -26,8 +28,8 @@ class FakeWeatherRepositoryImpl @Inject constructor(
         longitude: String
     ): Resource<WeatherInfo> {
         val weatherInfo = WeatherInfo(
-            latitude = 52.52,
-            longitude = 13.41,
+            latitude = 12.9737,
+            longitude = 77.7007,
             currentUnit = CurrentUnitInfo(
                 time = "iso8601",
                 interval = "seconds",
@@ -62,60 +64,12 @@ class FakeWeatherRepositoryImpl @Inject constructor(
     override suspend fun getLocalityBasedOnCoordinates(
         latitude: String,
         longitude: String
-    ): Resource<GoogleGeoCodingDTO> {
-        return Resource.Success(data = fakeGeoCodingLocationBangalore)
+    ): Resource<GeoCodingInfo> {
+        return Resource.Success(data = fakeGeoCodingLocationBangalore.toGeoCodingInfo())
     }
 
     companion object {
         val fakeTimeList = listOf<String>(
-            "2023-11-07T00:00",
-            "2023-11-07T01:00",
-            "2023-11-07T02:00",
-            "2023-11-07T03:00",
-            "2023-11-07T04:00",
-            "2023-11-07T05:00",
-            "2023-11-07T06:00",
-            "2023-11-07T07:00",
-            "2023-11-07T08:00",
-            "2023-11-07T09:00",
-            "2023-11-07T10:00",
-            "2023-11-07T11:00",
-            "2023-11-07T12:00",
-            "2023-11-07T13:00",
-            "2023-11-07T14:00",
-            "2023-11-07T15:00",
-            "2023-11-07T16:00",
-            "2023-11-07T17:00",
-            "2023-11-07T18:00",
-            "2023-11-07T19:00",
-            "2023-11-07T20:00",
-            "2023-11-07T21:00",
-            "2023-11-07T22:00",
-            "2023-11-07T23:00",
-            "2023-11-08T00:00",
-            "2023-11-08T01:00",
-            "2023-11-08T02:00",
-            "2023-11-08T03:00",
-            "2023-11-08T04:00",
-            "2023-11-08T05:00",
-            "2023-11-08T06:00",
-            "2023-11-08T07:00",
-            "2023-11-08T08:00",
-            "2023-11-08T09:00",
-            "2023-11-08T10:00",
-            "2023-11-08T11:00",
-            "2023-11-08T12:00",
-            "2023-11-08T13:00",
-            "2023-11-08T14:00",
-            "2023-11-08T15:00",
-            "2023-11-08T16:00",
-            "2023-11-08T17:00",
-            "2023-11-08T18:00",
-            "2023-11-08T19:00",
-            "2023-11-08T20:00",
-            "2023-11-08T21:00",
-            "2023-11-08T22:00",
-            "2023-11-08T23:00",
             "2023-11-09T00:00",
             "2023-11-09T01:00",
             "2023-11-09T02:00",

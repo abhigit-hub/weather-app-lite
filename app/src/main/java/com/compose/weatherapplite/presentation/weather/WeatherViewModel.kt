@@ -6,11 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.compose.weatherapplite.data.remote.GeoCodingApi
-import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
+import com.compose.weatherapplite.domain.model.GeoCodingInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import com.compose.weatherapplite.manager.WeatherLocationManager
+import com.compose.weatherapplite.presentation.mapper.toGeoCodingState
 import com.compose.weatherapplite.presentation.mapper.toWeatherState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
@@ -39,7 +39,7 @@ class WeatherViewModel @Inject constructor(
         Log.d(TAG, "initiateApiRequest() ==> (latitude = $latitude, longitude = $longitude)")
         viewModelScope.launch {
             var responseForWeatherApi: Resource<WeatherInfo>
-            var responseForGeoCodingApi: Resource<GoogleGeoCodingDTO>
+            var responseForGeoCodingApi: Resource<GeoCodingInfo>
 
             val callWeatherApi = async {
                 repository.getWeatherForecastAndCurrent(
@@ -73,20 +73,18 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    private fun processGeoCodingApiResponse(responseForGeoCodingApi: Resource<GoogleGeoCodingDTO>) {
+    private fun processGeoCodingApiResponse(responseForGeoCodingApi: Resource<GeoCodingInfo>) {
         when (responseForGeoCodingApi) {
             is Resource.Success -> {
-                responseForGeoCodingApi.data?.let { geoCodingDto ->
+                responseForGeoCodingApi.data?.let { geoCodingInfo ->
                     Log.d(TAG, "API Response: Success ==>")
-                    Log.d(TAG, "${geoCodingDto.results}")
+                    Log.d(TAG, geoCodingInfo.cityName)
 
-                    val cityName = geoCodingDto.results.filter {
-                        it.types.contains(GeoCodingApi.ADDITIONAL_QUERY_PARAMS_FOR_RESULT_TYPE)
-                    }[0].formattedAddress
+                    val geoCodingState = geoCodingInfo.toGeoCodingState()
 
                     state = state.copy(
                         locationState = state.locationState.copy(
-                            cityName = cityName
+                            cityName = geoCodingState.cityName
                         )
                     )
                 }

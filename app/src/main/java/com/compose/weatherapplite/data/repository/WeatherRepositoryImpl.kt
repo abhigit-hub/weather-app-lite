@@ -1,10 +1,11 @@
 package com.compose.weatherapplite.data.repository
 
 import android.util.Log
+import com.compose.weatherapplite.data.mapper.toGeoCodingInfo
 import com.compose.weatherapplite.data.mapper.toWeatherInfo
 import com.compose.weatherapplite.data.remote.GeoCodingApi
 import com.compose.weatherapplite.data.remote.WeatherApi
-import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
+import com.compose.weatherapplite.domain.model.GeoCodingInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import com.compose.weatherapplite.utils.Resource
@@ -35,7 +36,7 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getLocalityBasedOnCoordinates(latitude: String, longitude: String): Resource<GoogleGeoCodingDTO> {
+    override suspend fun getLocalityBasedOnCoordinates(latitude: String, longitude: String): Resource<GeoCodingInfo> {
         return try {
             val latlng = "$latitude,$longitude"
 
@@ -43,7 +44,8 @@ class WeatherRepositoryImpl @Inject constructor(
             val response = geoCodingApi.getLocalityFromCoordinatesUsingGeoCodingApi(latLng = latlng)
             Log.d(TAG, "RESP <== fetchLocalityBasedOnCoordinates() <== (response = $response)")
 
-            Resource.Success(data = response)
+            val data = response.toGeoCodingInfo()
+            Resource.Success(data = data)
         } catch (e:HttpException) {
             e.printStackTrace()
             Resource.Error("Failed api request")
