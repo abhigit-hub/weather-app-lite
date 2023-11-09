@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -80,7 +80,7 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Compose - Map
     implementation(libs.compose.map)
@@ -90,4 +90,8 @@ dependencies {
 
     // Play Services - Location
     implementation(libs.playservices.location)
+
+    // Destinations - Navigation
+    implementation(libs.destinations.core)
+    ksp(libs.destinations.ksp)
 }

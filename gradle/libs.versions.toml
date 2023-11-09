@@ -17,6 +17,7 @@ okhttp = "4.10.0"
 playservicesLocation = "21.0.1"
 retrofit = "2.9.0"
 versionCatalogUpdate = "0.8.1"
+destinations = "1.8.42-beta"
 
 minSdk = "26"
 targetSdk = "34"
@@ -48,6 +49,10 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "playservicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "destinations" }
+destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "destinations" }
+ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -55,5 +60,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "versionCatalogUpdate" }
 gradle-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleVersions" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
