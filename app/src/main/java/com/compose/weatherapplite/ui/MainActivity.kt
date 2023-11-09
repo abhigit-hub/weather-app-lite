@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.compose.weatherapplite.presentation.weather.composables.WeatherScreen
+import com.compose.weatherapplite.presentation.weather.WeatherScreen
 import com.compose.weatherapplite.ui.theme.WeatherAppLiteTheme
 import com.compose.weatherapplite.ui.theme.md_theme_dark_background
 import dagger.hilt.android.AndroidEntryPoint

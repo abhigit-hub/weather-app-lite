@@ -1,4 +1,4 @@
-package com.compose.weatherapplite.presentation.weather.composables
+package com.compose.weatherapplite.presentation.weather
 
 import android.Manifest
 import androidx.compose.foundation.Image
@@ -19,7 +19,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.presentation.weather.WeatherViewModel
+import com.compose.weatherapplite.presentation.weather.composables.CurrentWeatherView
+import com.compose.weatherapplite.presentation.weather.composables.TopBar
+import com.compose.weatherapplite.presentation.weather.composables.WeatherHistoryQuickView
+import com.compose.weatherapplite.presentation.weather.composables.WeatherMapScreen
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
