@@ -2,7 +2,9 @@ package com.compose.weatherapplite.presentation.weather
 
 import android.Manifest
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,15 +25,39 @@ import com.compose.weatherapplite.presentation.weather.composables.CurrentWeathe
 import com.compose.weatherapplite.presentation.weather.composables.TopBar
 import com.compose.weatherapplite.presentation.weather.composables.WeatherHistoryQuickView
 import com.compose.weatherapplite.presentation.weather.composables.WeatherMapScreen
+import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
 import com.compose.weatherapplite.ui.theme.WeatherTypography
+import com.compose.weatherapplite.ui.theme.md_theme_dark_background
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
+@RootNavGraph(start = true)
+@Destination
+@Composable
+fun WeatherScreenContainer(
+    viewModel: WeatherViewModel = hiltViewModel(),
+    destinationsNavigator: DestinationsNavigator
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(md_theme_dark_background),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        WeatherScreen(viewModel = viewModel) {
+            destinationsNavigator.navigate(WeatherScreenDetailsContainerDestination)
+        }
+    }
+}
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherScreen(
-    viewModel: WeatherViewModel = hiltViewModel(),
+    viewModel: WeatherViewModel,
     onGridClick: () -> Unit
 ) {
     val locationPermissionState = rememberMultiplePermissionsState(listOf(
