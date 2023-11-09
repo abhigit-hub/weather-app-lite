@@ -1,6 +1,7 @@
 package com.compose.weatherapplite.presentation.weather.composables
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,10 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
 import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
-fun TopBar(weatherState: WeatherState) {
+fun TopBar(
+    weatherState: WeatherState,
+    onGridClick: () -> Unit
+    ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,6 +78,9 @@ fun TopBar(weatherState: WeatherState) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(8.dp)
+                    .clickable {
+                        onGridClick()
+                    }
             )
         }
     }

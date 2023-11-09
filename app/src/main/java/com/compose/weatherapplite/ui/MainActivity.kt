@@ -11,10 +11,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.compose.weatherapplite.presentation.weather.WeatherDetailsScreen
 import com.compose.weatherapplite.presentation.weather.WeatherScreen
+import com.compose.weatherapplite.ui.destinations.WeatherDetailsScreenSurfaceDestination
 import com.compose.weatherapplite.ui.theme.WeatherAppLiteTheme
 import com.compose.weatherapplite.ui.theme.md_theme_dark_background
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,26 +36,39 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherAppLiteTheme {
-                MainSurface()
+                DestinationsNavHost(navGraph = NavGraphs.root)
             }
         }
     }
 }
 
+@RootNavGraph(start = true)
+@Destination
 @Composable
-fun MainSurface() {
+fun WeatherScreenSurface(
+    destinationsNavigator: DestinationsNavigator
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(md_theme_dark_background),
         contentAlignment = Alignment.TopCenter
     ) {
-        WeatherScreen()
+        WeatherScreen {
+            destinationsNavigator.navigate(WeatherDetailsScreenSurfaceDestination)
+        }
     }
 }
 
-@Preview
+@Destination
 @Composable
-fun MainSurfacePreview() {
-    MainSurface()
+fun WeatherDetailsScreenSurface() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(md_theme_dark_background),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        WeatherDetailsScreen()
+    }
 }

@@ -32,6 +32,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 @Composable
 fun WeatherScreen(
     viewModel: WeatherViewModel = hiltViewModel(),
+    onGridClick: () -> Unit
 ) {
     val locationPermissionState = rememberMultiplePermissionsState(listOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -49,7 +50,7 @@ fun WeatherScreen(
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            TopBar(weatherState = weatherState)
+            TopBar(weatherState = weatherState, onGridClick)
             CurrentWeatherView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(
