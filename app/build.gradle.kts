@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        compileSdkPreview = "UpsideDownCake"
     }
 
     buildTypes {
@@ -79,8 +80,7 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    kapt(libs.hilt.ext.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Compose - Map
     implementation(libs.compose.map)
@@ -90,4 +90,8 @@ dependencies {
 
     // Play Services - Location
     implementation(libs.playservices.location)
+
+    // Destinations - Navigation
+    implementation(libs.destinations.core)
+    ksp(libs.destinations.ksp)
 }
