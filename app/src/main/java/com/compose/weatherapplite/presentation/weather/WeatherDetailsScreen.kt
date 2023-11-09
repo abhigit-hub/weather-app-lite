@@ -2,21 +2,23 @@ package com.compose.weatherapplite.presentation.weather
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.compose.weatherapplite.ui.theme.WeatherTypography
+import androidx.compose.ui.unit.dp
+import com.compose.weatherapplite.presentation.weather.composables.weatherdetails.WeatherDetailsTopBar
 import com.compose.weatherapplite.ui.theme.md_theme_dark_background
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination
 @Composable
 fun WeatherScreenDetailsContainer(
-    viewModel: WeatherViewModel = hiltViewModel()
+    viewModel: WeatherViewModel,
+    destinationsNavigator: DestinationsNavigator
 ) {
     Box(
         modifier = Modifier
@@ -24,19 +26,22 @@ fun WeatherScreenDetailsContainer(
             .background(md_theme_dark_background),
         contentAlignment = Alignment.TopCenter
     ) {
-        WeatherDetailsScreen(viewModel = viewModel)
+        WeatherDetailsScreen(viewModel = viewModel) {
+            destinationsNavigator.navigateUp()
+        }
     }
 }
 
 @Composable
 fun WeatherDetailsScreen(
-    viewModel: WeatherViewModel
+    viewModel: WeatherViewModel,
+    navigateHome: () -> Unit
 ) {
-    val state = viewModel.state
+    val weatherState = viewModel.state
 
-    Text(
-        text = state.locationState.cityName,
-        style = WeatherTypography.titleLarge,
-        color = md_theme_dark_primary
-    )
+    Column(
+        modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
+    ) {
+        WeatherDetailsTopBar(weatherState = weatherState, navigateHome = navigateHome)
+    }
 }

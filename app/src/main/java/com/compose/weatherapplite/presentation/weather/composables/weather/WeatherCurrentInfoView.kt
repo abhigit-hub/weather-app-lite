@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
-import com.compose.weatherapplite.presentation.weather.composables.WeatherSummaryView
+import com.compose.weatherapplite.presentation.weather.composables.common.WeatherSummaryView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary

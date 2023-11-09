@@ -5,9 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.compose.weatherapplite.presentation.weather.NavGraphs
+import com.compose.weatherapplite.presentation.weather.WeatherViewModel
 import com.compose.weatherapplite.ui.theme.WeatherAppLiteTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.navigation.dependency
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,8 +28,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherAppLiteTheme {
-                DestinationsNavHost(navGraph = NavGraphs.root)
+                AppNavigation(this@MainActivity)
             }
         }
     }
+}
+
+@Composable
+private fun AppNavigation(activity: ComponentActivity) {
+    DestinationsNavHost(
+        navGraph = NavGraphs.root,
+        dependenciesContainerBuilder = {
+            dependency(hiltViewModel<WeatherViewModel>(activity))
+        }
+    )
 }

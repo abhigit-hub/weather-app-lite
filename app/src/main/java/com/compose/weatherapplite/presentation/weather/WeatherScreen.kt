@@ -19,10 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.weather.composables.weather.CurrentWeatherView
-import com.compose.weatherapplite.presentation.weather.composables.weather.TopBar
+import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherTopBar
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherHistoryQuickView
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherMapScreen
 import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
@@ -35,11 +34,11 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@RootNavGraph(start = true)
+@RootNavGraph(true)
 @Destination
 @Composable
 fun WeatherScreenContainer(
-    viewModel: WeatherViewModel = hiltViewModel(),
+    viewModel: WeatherViewModel,
     destinationsNavigator: DestinationsNavigator
 ) {
     Box(
@@ -49,7 +48,9 @@ fun WeatherScreenContainer(
         contentAlignment = Alignment.TopCenter
     ) {
         WeatherScreen(viewModel = viewModel) {
-            destinationsNavigator.navigate(WeatherScreenDetailsContainerDestination)
+            destinationsNavigator.navigate(
+                WeatherScreenDetailsContainerDestination()
+            )
         }
     }
 }
@@ -76,7 +77,7 @@ fun WeatherScreen(
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            TopBar(weatherState = weatherState, onGridClick)
+            WeatherTopBar(weatherState = weatherState, onGridClick)
             CurrentWeatherView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(
