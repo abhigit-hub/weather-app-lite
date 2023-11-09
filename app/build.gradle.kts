@@ -18,6 +18,7 @@ android {
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        compileSdkPreview = "UpsideDownCake"
     }
 
     buildTypes {
@@ -79,8 +80,7 @@ dependencies {
     // Dagger - Hilt
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    kapt(libs.hilt.ext.compiler)
+    kapt(libs.hilt.android.compiler)
 
     // Compose - Map
     implementation(libs.compose.map)
