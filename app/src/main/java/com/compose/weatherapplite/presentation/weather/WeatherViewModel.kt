@@ -84,7 +84,8 @@ class WeatherViewModel @Inject constructor(
 
                     state = state.copy(
                         locationState = state.locationState.copy(
-                            cityName = geoCodingState.cityName
+                            cityName = geoCodingState.cityName,
+                            cityShortenedName = geoCodingState.cityShortenedName
                         )
                     )
                 }

@@ -13,7 +13,8 @@ data class WeatherState(
 data class LocationState(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
-    val cityName: String = ""
+    val cityName: String = "",
+    val cityShortenedName: String = "",
 )
 
 data class CurrentWeatherState(

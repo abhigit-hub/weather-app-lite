@@ -33,7 +33,7 @@ fun WeatherDetailsTopBar(
         )
 
         Text(
-            text = weatherState.locationState.cityName,
+            text = weatherState.locationState.cityShortenedName,
             color = md_theme_dark_primary,
             style = WeatherTypography.headlineSmall,
             modifier = Modifier.fillMaxWidth().weight(0.76f),

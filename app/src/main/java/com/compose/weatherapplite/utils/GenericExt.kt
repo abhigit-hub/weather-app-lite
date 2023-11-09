@@ -23,3 +23,14 @@ fun String.toLocalDate(): LocalDateTime {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
     return LocalDateTime.parse(this, formatter)
 }
+
+fun String.toShortenedCityName(): String {
+    val stringInProcess = this.split(",")
+
+
+    return when (stringInProcess.size) {
+        3 -> "${stringInProcess[0]}, ${stringInProcess[2]}"
+        1 -> stringInProcess[0]
+        else -> this
+    }
+}
