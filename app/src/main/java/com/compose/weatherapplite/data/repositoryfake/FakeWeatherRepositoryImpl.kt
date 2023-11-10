@@ -189,7 +189,11 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             "2023-11-15T20:00",
             "2023-11-15T21:00",
             "2023-11-15T22:00",
-            "2023-11-15T23:00"
+            "2023-11-15T23:00",
+            "2023-11-16T23:00",
+            "2023-11-17T23:00",
+            "2023-11-18T23:00",
+            "2023-11-19T23:00",
         )
         val fakeTemperatureList = listOf<Double>(
             7.1,
@@ -359,7 +363,11 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             8.5,
             8.6,
             8.8,
-            8.9
+            8.9,
+            8.8,
+            8.7,
+            8.6,
+            8.5,
         )
         val fakeHumidityList = listOf(
             70,
@@ -529,7 +537,11 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             85,
             85,
             85,
-            84
+            84,
+            83,
+            82,
+            81,
+            80,
         )
         val fakeWindspeedList = listOf<Double>(
             8.3,
@@ -699,7 +711,11 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             13.0,
             13.0,
             13.4,
-            13.9
+            13.9,
+            13.8,
+            13.7,
+            13.6,
+            13.5,
         )
         val fakeWeatherCodeList = listOf<Int>(
             2,
@@ -869,7 +885,11 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             3,
             3,
             3,
-            3
+            3,
+            2,
+            2,
+            3,
+            3,
         )
 
         val fakeGeoCodingLocationPune = GoogleGeoCodingDTO(

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,14 +40,14 @@ fun WeatherDetailsTemperatureBarView(
             text = minTemperature,
             color = md_theme_dark_secondary,
             style = WeatherTypography.titleLarge,
-            textAlign = TextAlign.Left
+            textAlign = TextAlign.Left,
+            modifier = Modifier.width(45.dp)
         )
 
         Box(
             modifier = Modifier
                 .height(4.dp)
-                .fillMaxWidth()
-                .weight(0.5f)
+                .width(80.dp)
                 .padding(horizontal = 15.dp)
                 .clip(RoundedCornerShape(20.dp))
                 .background(
@@ -63,7 +64,8 @@ fun WeatherDetailsTemperatureBarView(
             text = maxTemperature,
             color = md_theme_dark_primary,
             style = WeatherTypography.titleLarge,
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
+            modifier = Modifier.width(45.dp)
         )
     }
 }
