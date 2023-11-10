@@ -114,7 +114,8 @@ class WeatherViewModel @Inject constructor(
                         weatherMenuSelectorType = weatherState.weatherMenuSelectorType,
                         currentWeatherState = weatherState.currentWeatherState,
                         nextTenDaysWeatherItemListState = weatherState.nextTenDaysWeatherItemListState,
-                        tomorrowWeatherItemListState = weatherState.tomorrowWeatherItemListState
+                        tomorrowWeatherItemListState = weatherState.tomorrowWeatherItemListState,
+                        nextTenDaysWeatherDetailsItemListState = weatherState.nextTenDaysWeatherDetailsItemListState
                     )
                 }
             }

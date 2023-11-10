@@ -4,6 +4,7 @@ import com.compose.weatherapplite.domain.model.HourlyInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.presentation.model.LocationState
+import com.compose.weatherapplite.presentation.model.WeatherDetailsItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
@@ -18,6 +19,7 @@ fun WeatherInfo.toWeatherState(): WeatherState {
         currentWeatherState = this.toCurrentWeatherState(),
         tomorrowWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow),
         nextTenDaysWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays),
+        nextTenDaysWeatherDetailsItemListState = this.hourly.toWeatherDetailsItemListState()
     )
 }
 
@@ -40,6 +42,49 @@ fun WeatherInfo.toCurrentWeatherState(): CurrentWeatherState {
         rain = "${current.weatherCode.toRainLevel()}%",
         todaysWeatherItemListState = hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeToday)
     )
+}
+
+fun HourlyInfo.toWeatherDetailsItemListState(): List<WeatherDetailsItemMetaState> {
+    val weatherDetailsItemMetaStateList = mutableListOf<WeatherDetailsItemMetaState>()
+
+    var lastKnownWeatherDetailsItemMetaState: WeatherDetailsItemMetaState? = null
+    var lastKnownMinTemperature: Double = -1.0
+    var lastKnownMaxTemperature: Double = -1.0
+
+    time.forEachIndexed { index, localDateTime ->
+        if (lastKnownWeatherDetailsItemMetaState == null) {
+            lastKnownWeatherDetailsItemMetaState = WeatherDetailsItemMetaState(
+                time = time[index].toLocalDate(),
+                weatherCode = weatherCodes[index].toWeatherType(),
+                minTemperature = "0",
+                maxTemperature = "0"
+            )
+            return@forEachIndexed
+        }
+
+        if (time[index].toLocalDate().equals(lastKnownWeatherDetailsItemMetaState?.time)) {
+            if (temperature[index] < lastKnownMinTemperature || lastKnownMinTemperature == -1.0) {
+                lastKnownMinTemperature = temperature[index]
+            }
+            if (temperature[index] > lastKnownMaxTemperature || lastKnownMaxTemperature == -1.0) {
+                lastKnownMaxTemperature = temperature[index]
+            }
+            if ((index % 12) == 0 && (index / 12) % 2 == 1)
+                lastKnownWeatherDetailsItemMetaState!!.weatherCode = weatherCodes[index].toWeatherType()
+
+            if (index != time.size - 1) return@forEachIndexed
+        }
+
+        lastKnownWeatherDetailsItemMetaState!!.minTemperature = lastKnownMinTemperature.toString()
+        lastKnownWeatherDetailsItemMetaState!!.maxTemperature = lastKnownMaxTemperature.toString()
+        weatherDetailsItemMetaStateList.add(lastKnownWeatherDetailsItemMetaState!!)
+
+        lastKnownWeatherDetailsItemMetaState = null
+        lastKnownMinTemperature = -1.0
+        lastKnownMaxTemperature = -1.0
+    }
+
+    return weatherDetailsItemMetaStateList
 }
 
 fun HourlyInfo.toWeatherItemListState(weatherMenuSelectorType: WeatherMenuSelectorType): List<WeatherItemMetaState> {

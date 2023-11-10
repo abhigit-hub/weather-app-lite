@@ -27,6 +27,7 @@ import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
+import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
 fun WeatherSummaryView(currentWeatherState: CurrentWeatherState) {
@@ -85,7 +86,7 @@ fun CurrentWeatherItem(
         Text(
             text = itemType,
             style = WeatherTypography.labelLarge,
-            color = md_theme_dark_primary,
+            color = md_theme_dark_secondary,
             textAlign = TextAlign.Center
         )
     }

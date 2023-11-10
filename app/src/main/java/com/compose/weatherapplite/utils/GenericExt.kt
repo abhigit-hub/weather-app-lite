@@ -24,6 +24,11 @@ fun String.toLocalDate(): LocalDateTime {
     return LocalDateTime.parse(this, formatter)
 }
 
+fun LocalDate.toDayOfWeek(): String {
+    return if (this.isEqual(LocalDate.now())) "Today"
+    else dayOfWeek.toString().lowercase().capitalize()
+}
+
 fun String.toShortenedCityName(): String {
     val stringInProcess = this.split(",")
 

@@ -1,5 +1,6 @@
 package com.compose.weatherapplite.presentation.model
 
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class WeatherState(
@@ -8,6 +9,7 @@ data class WeatherState(
     val currentWeatherState: CurrentWeatherState = CurrentWeatherState(),
     val tomorrowWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
     val nextTenDaysWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
+    val nextTenDaysWeatherDetailsItemListState: List<WeatherDetailsItemMetaState> = emptyList(),
 )
 
 data class LocationState(
@@ -31,4 +33,11 @@ data class WeatherItemMetaState(
     val time: LocalDateTime,
     val temperature: String,
     val weatherCode: WeatherType
+)
+
+data class WeatherDetailsItemMetaState(
+    val time: LocalDate,
+    var minTemperature: String,
+    var maxTemperature: String,
+    var weatherCode: WeatherType
 )
