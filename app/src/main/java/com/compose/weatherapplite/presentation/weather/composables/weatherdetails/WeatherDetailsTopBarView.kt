@@ -17,7 +17,8 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 @Composable
 fun WeatherDetailsTopBarView(
     weatherState: WeatherState,
-    navigateHome: () -> Unit
+    navigateHome: () -> Unit,
+    navigatePageInfo: () -> Unit
     ) {
     Row(
         modifier = Modifier
@@ -27,7 +28,7 @@ fun WeatherDetailsTopBarView(
     ) {
         WeatherIconView(
             modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
-            R.drawable.vd_menu,
+            R.drawable.vd_action_back,
             "go back to previous page",
             onItemClick = navigateHome
         )
@@ -42,9 +43,9 @@ fun WeatherDetailsTopBarView(
 
         WeatherIconView(
             modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
-            R.drawable.vd_menu,
-            "list of cities",
-            onItemClick = navigateHome
+            R.drawable.vd_action_page_info,
+            "Page Info",
+            onItemClick = navigatePageInfo
         )
     }
 }

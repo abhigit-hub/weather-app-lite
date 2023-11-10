@@ -57,7 +57,7 @@ fun WeatherTopBarView(
 
         WeatherIconView(
             modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
-            R.drawable.vd_menu,
+            R.drawable.vd_action_menu,
             "detailed weather",
             onItemClick = onGridClick
         )
