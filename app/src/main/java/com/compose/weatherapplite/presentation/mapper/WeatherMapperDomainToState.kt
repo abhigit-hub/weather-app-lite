@@ -75,8 +75,8 @@ fun HourlyInfo.toWeatherDetailsItemListState(): List<WeatherDetailsItemMetaState
             if (index != time.size - 1) return@forEachIndexed
         }
 
-        lastKnownWeatherDetailsItemMetaState!!.minTemperature = lastKnownMinTemperature.toString()
-        lastKnownWeatherDetailsItemMetaState!!.maxTemperature = lastKnownMaxTemperature.toString()
+        lastKnownWeatherDetailsItemMetaState!!.minTemperature = "$lastKnownMinTemperature°"
+        lastKnownWeatherDetailsItemMetaState!!.maxTemperature = "$lastKnownMaxTemperature°"
         weatherDetailsItemMetaStateList.add(lastKnownWeatherDetailsItemMetaState!!)
 
         lastKnownWeatherDetailsItemMetaState = null

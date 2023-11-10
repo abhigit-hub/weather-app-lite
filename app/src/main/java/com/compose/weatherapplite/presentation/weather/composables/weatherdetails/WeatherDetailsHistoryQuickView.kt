@@ -1,14 +1,18 @@
 package com.compose.weatherapplite.presentation.weather.composables.weatherdetails
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.WeatherDetailsItemMetaState
@@ -31,34 +35,28 @@ fun WeatherDetailsHistoryQuickView(
 
 @Composable
 fun WeatherDetailsHistoryQuickViewItem(weatherDetailsItemMetaData: WeatherDetailsItemMetaState) {
-    Row {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         Text(
             text = weatherDetailsItemMetaData.time.toDayOfWeek(),
             color = md_theme_dark_primary,
-            style = WeatherTypography.titleLarge,
-            modifier = Modifier.weight(0.4f)
+            style = WeatherTypography.titleMedium,
+            modifier = Modifier.weight(0.2f).padding(start = 12.dp)
         )
 
-        Text(
-            text = weatherDetailsItemMetaData.minTemperature,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.2f)
-        )
-
-        Text(
-            text = weatherDetailsItemMetaData.maxTemperature,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.2f)
+        WeatherDetailsTemperatureBarView(
+            minTemperature = weatherDetailsItemMetaData.minTemperature,
+            maxTemperature = weatherDetailsItemMetaData.maxTemperature,
+            modifier = Modifier.weight(0.55f)
         )
 
         Image(
             painter = painterResource(weatherDetailsItemMetaData.weatherCode.toDrawable()),
             contentDescription = null,
             modifier = Modifier
-                .size(50.dp)
-                .weight(0.2f)
+                .size(60.dp)
         )
     }
 }
