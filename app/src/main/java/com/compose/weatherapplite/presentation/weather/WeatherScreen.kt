@@ -20,10 +20,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
-import com.compose.weatherapplite.presentation.weather.composables.weather.CurrentWeatherView
-import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherTopBar
+import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherCurrentInfoView
+import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherTopBarView
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherHistoryQuickView
-import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherMapScreen
+import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherMapView
 import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_background
@@ -77,8 +77,8 @@ fun WeatherScreen(
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            WeatherTopBar(weatherState = weatherState, onGridClick)
-            CurrentWeatherView(currentWeatherState = weatherState.currentWeatherState)
+            WeatherTopBarView(weatherState = weatherState, onGridClick)
+            WeatherCurrentInfoView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(
                 weatherState = weatherState,
@@ -87,7 +87,7 @@ fun WeatherScreen(
                 }
             )
             Spacer(modifier = Modifier.height(40.dp))
-            WeatherMapScreen(locationState = weatherState.locationState)
+            WeatherMapView(locationState = weatherState.locationState)
         }
     } else {
         Column(

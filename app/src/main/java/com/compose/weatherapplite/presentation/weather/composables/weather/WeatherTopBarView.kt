@@ -22,7 +22,7 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
-fun WeatherTopBar(
+fun WeatherTopBarView(
     weatherState: WeatherState,
     onGridClick: () -> Unit
     ) {

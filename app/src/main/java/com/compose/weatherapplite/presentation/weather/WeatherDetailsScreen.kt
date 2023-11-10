@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.presentation.weather.composables.weatherdetails.WeatherDetailsTopBar
+import com.compose.weatherapplite.presentation.weather.composables.weatherdetails.WeatherDetailsCurrentInfoView
+import com.compose.weatherapplite.presentation.weather.composables.weatherdetails.WeatherDetailsTopBarView
 import com.compose.weatherapplite.ui.theme.md_theme_dark_background
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -42,6 +43,7 @@ fun WeatherDetailsScreen(
     Column(
         modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
     ) {
-        WeatherDetailsTopBar(weatherState = weatherState, navigateHome = navigateHome)
+        WeatherDetailsTopBarView(weatherState = weatherState, navigateHome = navigateHome)
+        WeatherDetailsCurrentInfoView(weatherState = weatherState)
     }
 }

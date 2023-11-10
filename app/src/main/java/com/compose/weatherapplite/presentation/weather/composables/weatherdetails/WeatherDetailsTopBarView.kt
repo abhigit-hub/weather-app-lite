@@ -15,7 +15,7 @@ import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 
 @Composable
-fun WeatherDetailsTopBar(
+fun WeatherDetailsTopBarView(
     weatherState: WeatherState,
     navigateHome: () -> Unit
     ) {

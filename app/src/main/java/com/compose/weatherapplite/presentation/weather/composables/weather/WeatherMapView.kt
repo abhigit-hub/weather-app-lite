@@ -14,7 +14,7 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
-fun WeatherMapScreen(locationState: LocationState) {
+fun WeatherMapView(locationState: LocationState) {
     if (locationState.latitude != 0.0 && locationState.longitude != 0.0) {
 
         val latLng = LatLng(locationState.latitude, locationState.longitude)

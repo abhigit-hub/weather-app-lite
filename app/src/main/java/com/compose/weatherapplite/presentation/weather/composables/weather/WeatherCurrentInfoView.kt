@@ -22,7 +22,7 @@ import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 import com.compose.weatherapplite.utils.toDrawable
 
 @Composable
-fun CurrentWeatherView(
+fun WeatherCurrentInfoView(
     currentWeatherState: CurrentWeatherState
 ) {
     Column {
