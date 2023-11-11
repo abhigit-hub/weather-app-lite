@@ -1,19 +1,17 @@
 package com.compose.weatherapplite.ui.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.compose.weatherapplite.presentation.weather.WeatherViewModel
 
 val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -77,25 +75,20 @@ val DarkColors = darkColorScheme(
 
 @Composable
 fun WeatherAppLiteTheme(
-    isDarkTheme: Boolean = isSystemInDarkTheme(),
+    isGlobalDarkTheme: Boolean = isSystemInDarkTheme(),
+    viewModel: WeatherViewModel = hiltViewModel(),
     content: @Composable () -> Unit
 ) {
-    /*val colorScheme =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val context = LocalContext.current
-            if (isDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        } else {
-            if (isDarkTheme) DarkColors else LightColors
-        }*/
+    val isDarkThemeEnabledState = viewModel.isDarkThemeEnabledState
 
-    val colorScheme = if (isDarkTheme) DarkColors else LightColors
+    val colorScheme = if (isDarkThemeEnabledState) DarkColors else LightColors
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isDarkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isGlobalDarkTheme
         }
     }
 

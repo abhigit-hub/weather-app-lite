@@ -54,7 +54,7 @@ fun WeatherScreenContainer(
                 )
             },
             onNightModeSwitch = {
-
+                viewModel.toggleDarkThemeEnabledState()
             }
         )
     }
@@ -79,11 +79,12 @@ fun WeatherScreen(
             }
         }
         val weatherState = viewModel.state
+        val isDarkThemeEnabledState = viewModel.isDarkThemeEnabledState
 
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            WeatherTopBarView(weatherState = weatherState, onGridClick, onNightModeSwitch)
+            WeatherTopBarView(weatherState = weatherState, isDarkThemeEnabledState, onGridClick, onNightModeSwitch)
             WeatherCurrentInfoView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(

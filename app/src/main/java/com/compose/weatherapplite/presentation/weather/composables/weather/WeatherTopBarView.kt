@@ -1,6 +1,5 @@
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,6 +24,7 @@ import com.compose.weatherapplite.ui.theme.WeatherTypography
 @Composable
 fun WeatherTopBarView(
     weatherState: WeatherState,
+    isDarkThemeEnabled: Boolean,
     onGridClick: () -> Unit,
     onNightModeSwitch: () -> Unit
     ) {
@@ -61,7 +61,7 @@ fun WeatherTopBarView(
             modifier = Modifier
                 .fillMaxHeight(0.4f)
                 .weight(0.12f),
-            drawable = if (isSystemInDarkTheme()) R.drawable.vd_action_dark_mode
+            drawable = if (isDarkThemeEnabled) R.drawable.vd_action_dark_mode
                 else R.drawable.vd_action_light_mode,
             onItemClick = {
                 onNightModeSwitch()

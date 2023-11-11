@@ -33,6 +33,7 @@ class WeatherViewModel @Inject constructor(
     }
 
     var state by mutableStateOf(WeatherState())
+    var isDarkThemeEnabledState by mutableStateOf(false)
     var firstTimeRequest = AtomicBoolean(false)
 
     fun initiateApiRequest(latitude: Double, longitude: Double) {
@@ -139,5 +140,9 @@ class WeatherViewModel @Inject constructor(
 
     fun getWeatherLocationManager(): WeatherLocationManager {
         return weatherLocationManager
+    }
+
+    fun toggleDarkThemeEnabledState() {
+        isDarkThemeEnabledState = isDarkThemeEnabledState.not()
     }
 }
