@@ -1,11 +1,16 @@
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.LocationState
 import com.google.android.gms.maps.model.CameraPosition
@@ -22,14 +27,21 @@ fun WeatherMapView(locationState: LocationState) {
             position = CameraPosition.fromLatLngZoom(latLng, 15f)
         }
 
-        GoogleMap(
-            modifier = Modifier
-                .fillMaxHeight()
-                .padding(bottom = 20.dp)
-                .clip(RoundedCornerShape(30.dp)),
-            cameraPositionState = cameraPositionState,
-        ) {
+        Box(modifier = Modifier.fillMaxHeight()) {
+            GoogleMap(
+                modifier = Modifier
+                    .padding(bottom = 20.dp)
+                    .clip(RoundedCornerShape(30.dp)),
+                cameraPositionState = cameraPositionState,
+            )
 
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 20.dp)
+                    .clip(RoundedCornerShape(30.dp))
+                    .background(MaterialTheme.colorScheme.surfaceTint)
+            )
         }
     }
 }
