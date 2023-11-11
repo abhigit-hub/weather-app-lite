@@ -94,7 +94,10 @@ fun WeatherScreen(
                 }
             )
             Spacer(modifier = Modifier.height(40.dp))
-            WeatherMapView(locationState = weatherState.locationState)
+            WeatherMapView(
+                locationState = weatherState.locationState,
+                isDarkThemeEnabledState = isDarkThemeEnabledState
+            )
         }
     } else {
         Column(
