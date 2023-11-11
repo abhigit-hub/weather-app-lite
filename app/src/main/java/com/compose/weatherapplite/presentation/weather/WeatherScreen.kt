@@ -22,9 +22,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherCurrentInfoView
-import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherTopBarView
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherHistoryQuickView
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherMapView
+import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherTopBarView
 import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -46,11 +46,17 @@ fun WeatherScreenContainer(
             .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.TopCenter
     ) {
-        WeatherScreen(viewModel = viewModel) {
-            destinationsNavigator.navigate(
-                WeatherScreenDetailsContainerDestination()
-            )
-        }
+        WeatherScreen(
+            viewModel = viewModel,
+            onGridClick = {
+                destinationsNavigator.navigate(
+                    WeatherScreenDetailsContainerDestination()
+                )
+            },
+            onNightModeSwitch = {
+
+            }
+        )
     }
 }
 
@@ -58,7 +64,8 @@ fun WeatherScreenContainer(
 @Composable
 fun WeatherScreen(
     viewModel: WeatherViewModel,
-    onGridClick: () -> Unit
+    onGridClick: () -> Unit,
+    onNightModeSwitch: () -> Unit,
 ) {
     val locationPermissionState = rememberMultiplePermissionsState(listOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -76,7 +83,7 @@ fun WeatherScreen(
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            WeatherTopBarView(weatherState = weatherState, onGridClick)
+            WeatherTopBarView(weatherState = weatherState, onGridClick, onNightModeSwitch)
             WeatherCurrentInfoView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(

@@ -1,5 +1,6 @@
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +25,8 @@ import com.compose.weatherapplite.ui.theme.WeatherTypography
 @Composable
 fun WeatherTopBarView(
     weatherState: WeatherState,
-    onGridClick: () -> Unit
+    onGridClick: () -> Unit,
+    onNightModeSwitch: () -> Unit
     ) {
     Row(
         modifier = Modifier
@@ -34,7 +37,7 @@ fun WeatherTopBarView(
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(0.88f)
+                .weight(0.86f)
                 .padding(3.dp),
             verticalArrangement = Arrangement.Center
         ) {
@@ -55,7 +58,21 @@ fun WeatherTopBarView(
         }
 
         WeatherIconView(
-            modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
+            modifier = Modifier
+                .fillMaxHeight(0.4f)
+                .weight(0.12f),
+            drawable = if (isSystemInDarkTheme()) R.drawable.vd_action_dark_mode
+                else R.drawable.vd_action_light_mode,
+            onItemClick = {
+                onNightModeSwitch()
+            }
+        )
+        Spacer(modifier = Modifier.width(5.dp))
+
+        WeatherIconView(
+            modifier = Modifier
+                .fillMaxHeight(0.4f)
+                .weight(0.12f),
             R.drawable.vd_action_menu,
             "detailed weather",
             onItemClick = onGridClick
