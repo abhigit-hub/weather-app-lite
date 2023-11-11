@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,9 +26,6 @@ import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
 fun WeatherSummaryView(currentWeatherState: CurrentWeatherState) {
@@ -40,7 +38,7 @@ fun WeatherSummaryView(currentWeatherState: CurrentWeatherState) {
                 elevation = 30.dp,
                 shape = RoundedCornerShape(15.dp)
             )
-            .background(md_theme_dark_primaryContainer)
+            .background(MaterialTheme.colorScheme.primaryContainer)
 
     ) {
         Row(
@@ -79,14 +77,14 @@ fun CurrentWeatherItem(
         Text(
             text = itemData,
             style = WeatherTypography.headlineSmall,
-            color = md_theme_dark_primary,
+            color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(5.dp))
         Text(
             text = itemType,
             style = WeatherTypography.labelLarge,
-            color = md_theme_dark_secondary,
+            color = MaterialTheme.colorScheme.secondary,
             textAlign = TextAlign.Center
         )
     }

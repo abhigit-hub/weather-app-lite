@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,8 +27,6 @@ import com.compose.weatherapplite.presentation.weather.composables.weather.Weath
 import com.compose.weatherapplite.presentation.weather.composables.weather.WeatherMapView
 import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_background
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.ramcosta.composedestinations.annotation.Destination
@@ -44,7 +43,7 @@ fun WeatherScreenContainer(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(md_theme_dark_background),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.TopCenter
     ) {
         WeatherScreen(viewModel = viewModel) {
@@ -121,7 +120,7 @@ fun WeatherScreen(
             Spacer(modifier = Modifier.height(30.dp))
             Text(
                 text = textToShow,
-                color = md_theme_dark_primary,
+                color = MaterialTheme.colorScheme.primary,
                 style = WeatherTypography.titleLarge,
                 textAlign = TextAlign.Center
             )

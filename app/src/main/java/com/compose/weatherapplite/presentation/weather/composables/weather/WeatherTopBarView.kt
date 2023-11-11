@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,8 +19,6 @@ import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherIconView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 
 @Composable
 fun WeatherTopBarView(
@@ -41,14 +40,14 @@ fun WeatherTopBarView(
         ) {
             Text(
                 text = weatherState.locationState.cityName,
-                color = md_theme_dark_primary,
+                color = MaterialTheme.colorScheme.primary,
                 style = WeatherTypography.headlineSmall,
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
                 text = weatherState.currentWeatherState.date,
-                color = md_theme_dark_secondary,
+                color = MaterialTheme.colorScheme.secondary,
                 style = WeatherTypography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth()

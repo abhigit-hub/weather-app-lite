@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,10 +19,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_gradientLinearEnd
-import com.compose.weatherapplite.ui.theme.md_theme_dark_gradientLinearStart
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
+import com.compose.weatherapplite.ui.theme.md_theme_common_gradientLinearEnd
+import com.compose.weatherapplite.ui.theme.md_theme_common_gradientLinearStart
 
 @Composable
 fun WeatherDetailsTemperatureBarView(
@@ -38,7 +37,7 @@ fun WeatherDetailsTemperatureBarView(
     ) {
         Text(
             text = minTemperature,
-            color = md_theme_dark_secondary,
+            color = MaterialTheme.colorScheme.secondary,
             style = WeatherTypography.titleLarge,
             textAlign = TextAlign.Left,
             modifier = Modifier.width(45.dp)
@@ -53,8 +52,8 @@ fun WeatherDetailsTemperatureBarView(
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
-                            md_theme_dark_gradientLinearStart,
-                            md_theme_dark_gradientLinearEnd
+                            md_theme_common_gradientLinearStart,
+                            md_theme_common_gradientLinearEnd
                         )
                     )
                 )
@@ -62,7 +61,7 @@ fun WeatherDetailsTemperatureBarView(
 
         Text(
             text = maxTemperature,
-            color = md_theme_dark_primary,
+            color = MaterialTheme.colorScheme.primary,
             style = WeatherTypography.titleLarge,
             textAlign = TextAlign.End,
             modifier = Modifier.width(45.dp)

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,10 +29,6 @@ import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.toDrawable
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 import com.compose.weatherapplite.utils.toTimeInTheDay
 
 @Composable
@@ -98,7 +95,9 @@ fun WeatherHistorySelectorView(
    ) {
        Text(
            text = weatherMenuSelectorType.weatherType,
-           color = if (isSelected) md_theme_dark_primary else md_theme_dark_secondary,
+           color =
+           if (isSelected) MaterialTheme.colorScheme.primary
+           else MaterialTheme.colorScheme.secondary,
            style = WeatherTypography.titleLarge
        )
        if (isSelected) {
@@ -107,7 +106,7 @@ fun WeatherHistorySelectorView(
                modifier = Modifier
                    .size(5.dp)
                    .clip(RoundedCornerShape(50.dp))
-                   .background(md_theme_dark_primary)
+                   .background(MaterialTheme.colorScheme.primary)
            )
        }
    }
@@ -124,13 +123,13 @@ fun WeatherHistoryItemView(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(md_theme_dark_primaryContainer)
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(vertical = 20.dp, horizontal = 25.dp)
     ) {
         Text(
             text = weatherTime,
             style = WeatherTypography.titleLarge,
-            color = md_theme_dark_onSecondary,
+            color = MaterialTheme.colorScheme.onSecondary,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(5.dp))
@@ -144,7 +143,7 @@ fun WeatherHistoryItemView(
             text = "$temperature°",
             style = WeatherTypography.titleLarge,
             fontWeight = FontWeight.Bold,
-            color = md_theme_dark_primary,
+            color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center
         )
     }

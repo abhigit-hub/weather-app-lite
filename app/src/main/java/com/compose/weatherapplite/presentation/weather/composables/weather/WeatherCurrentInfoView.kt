@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,8 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherSummaryView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_secondary
 import com.compose.weatherapplite.utils.toDrawable
 
 @Composable
@@ -35,12 +34,12 @@ fun WeatherCurrentInfoView(
                 Text(
                     text = currentWeatherState.temperature,
                     style = WeatherTypography.displayLarge,
-                    color = md_theme_dark_primary,
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
                     text = currentWeatherState.weatherType.weatherType,
                     style = WeatherTypography.titleLarge,
-                    color = md_theme_dark_secondary,
+                    color = MaterialTheme.colorScheme.secondary,
                 )
             }
 

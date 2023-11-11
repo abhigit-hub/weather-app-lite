@@ -3,6 +3,7 @@ package com.compose.weatherapplite.presentation.weather.composables.weatherdetai
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,7 +13,6 @@ import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherIconView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 
 @Composable
 fun WeatherDetailsTopBarView(
@@ -35,7 +35,7 @@ fun WeatherDetailsTopBarView(
 
         Text(
             text = weatherState.locationState.cityShortenedName,
-            color = md_theme_dark_primary,
+            color = MaterialTheme.colorScheme.primary,
             style = WeatherTypography.headlineSmall,
             modifier = Modifier.fillMaxWidth().weight(0.76f),
             textAlign = TextAlign.Center

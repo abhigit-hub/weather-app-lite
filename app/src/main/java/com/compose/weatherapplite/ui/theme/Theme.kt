@@ -77,23 +77,25 @@ val DarkColors = darkColorScheme(
 
 @Composable
 fun WeatherAppLiteTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme =
+    /*val colorScheme =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (isDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         } else {
-            if (darkTheme) DarkColors else LightColors
-        }
+            if (isDarkTheme) DarkColors else LightColors
+        }*/
+
+    val colorScheme = if (isDarkTheme) DarkColors else LightColors
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isDarkTheme
         }
     }
 

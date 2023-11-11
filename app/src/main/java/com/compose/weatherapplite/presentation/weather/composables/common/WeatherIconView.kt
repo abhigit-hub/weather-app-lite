@@ -9,13 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.compose.weatherapplite.ui.theme.md_theme_dark_onSecondary
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primaryContainer
 
 @Composable
 fun WeatherIconView(
@@ -28,12 +27,12 @@ fun WeatherIconView(
         Box(
             modifier = modifier
                 .clip(RoundedCornerShape(10.dp))
-                .background(md_theme_dark_primaryContainer)
+                .background(MaterialTheme.colorScheme.primaryContainer)
         ) {
             Icon(
                 painter = painterResource(id = drawable),
                 contentDescription = contentDescription,
-                tint = md_theme_dark_onSecondary,
+                tint = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier
                     .fillMaxSize()
                     .clickable {

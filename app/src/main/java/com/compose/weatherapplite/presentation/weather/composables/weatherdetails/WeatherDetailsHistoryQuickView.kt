@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.WeatherDetailsItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
-import com.compose.weatherapplite.ui.theme.md_theme_dark_primary
 import com.compose.weatherapplite.utils.toDayOfWeek
 import com.compose.weatherapplite.utils.toDrawable
 
@@ -39,7 +39,7 @@ fun WeatherDetailsHistoryQuickViewItem(weatherDetailsItemMetaData: WeatherDetail
     ) {
         Text(
             text = weatherDetailsItemMetaData.time.toDayOfWeek(),
-            color = md_theme_dark_primary,
+            color = MaterialTheme.colorScheme.primary,
             style = WeatherTypography.titleMedium,
             modifier = Modifier.weight(0.2f).padding(start = 12.dp)
         )
