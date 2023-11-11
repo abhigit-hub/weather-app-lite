@@ -10,12 +10,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.LocationState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
@@ -33,7 +34,12 @@ fun WeatherMapView(locationState: LocationState) {
                     .padding(bottom = 20.dp)
                     .clip(RoundedCornerShape(30.dp)),
                 cameraPositionState = cameraPositionState,
-            )
+            ) {
+                Marker(
+                    state = MarkerState(position = LatLng(locationState.latitude, locationState.longitude)),
+                    title = locationState.cityShortenedName,
+                )
+            }
 
             Box(
                 modifier = Modifier
