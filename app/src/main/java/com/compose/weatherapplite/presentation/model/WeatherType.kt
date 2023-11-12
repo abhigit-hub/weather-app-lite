@@ -1,12 +1,12 @@
 package com.compose.weatherapplite.presentation.model
 
 sealed class WeatherType(val weatherType: String) {
-    object ClearSky: WeatherType("Clear Sky")
-    object Overcast: WeatherType("Overcast")
-    object Foggy: WeatherType("Foggy")
-    object Drizzle: WeatherType("Drizzle")
-    object Rain: WeatherType("Rain")
-    object HeavyRain: WeatherType("Heavy Rain")
-    object SnowFall: WeatherType("Snow Fall")
-    object Thunderstorm: WeatherType("Thunderstorm")
+    data object ClearSky: WeatherType("Clear Sky")
+    data object Overcast: WeatherType("Overcast")
+    data object Foggy: WeatherType("Foggy")
+    data object Drizzle: WeatherType("Drizzle")
+    data object Rain: WeatherType("Rain")
+    data object HeavyRain: WeatherType("Heavy Rain")
+    data object SnowFall: WeatherType("Snow Fall")
+    data object Thunderstorm: WeatherType("Thunderstorm")
 }
