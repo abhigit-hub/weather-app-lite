@@ -72,6 +72,9 @@ dependencies {
     // Compose - UI - Material 3
     implementation(libs.androidx.compose.material3)
 
+    // Compose - UI - Animation Graphics
+    implementation(libs.androidx.compose.animation.graphics)
+
     // Retrofit (Retrofit, Gson Converter, OkHTTP Logging)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
