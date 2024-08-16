@@ -25,13 +25,15 @@ fun String.toLocalDate(): LocalDateTime {
 }
 
 fun LocalDate.toDayOfWeek(): String {
-    return if (this.isEqual(LocalDate.now())) "Today"
-    else dayOfWeek.toString().lowercase().capitalize()
+    return if (this.isEqual(LocalDate.now())) {
+        "Today"
+    } else {
+        dayOfWeek.toString().lowercase().capitalize()
+    }
 }
 
 fun String.toShortenedCityName(): String {
     val stringInProcess = this.split(",")
-
 
     return when (stringInProcess.size) {
         3 -> "${stringInProcess[0]}, ${stringInProcess[2]}"

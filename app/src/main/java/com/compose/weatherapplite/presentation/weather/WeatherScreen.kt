@@ -64,12 +64,14 @@ fun WeatherScreenContainer(
 fun WeatherScreen(
     viewModel: WeatherViewModel,
     onGridClick: () -> Unit,
-    onNightModeSwitch: () -> Unit,
+    onNightModeSwitch: () -> Unit
 ) {
-    val locationPermissionState = rememberMultiplePermissionsState(listOf(
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION
-    ))
+    val locationPermissionState = rememberMultiplePermissionsState(
+        listOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    )
 
     if (locationPermissionState.allPermissionsGranted) {
         if (!viewModel.firstTimeRequest.getAndSet(true)) {
@@ -83,7 +85,12 @@ fun WeatherScreen(
         Column(
             modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
         ) {
-            WeatherTopBarView(weatherState = weatherState, isDarkThemeEnabledState, onGridClick, onNightModeSwitch)
+            WeatherTopBarView(
+                weatherState = weatherState,
+                isDarkThemeEnabledState,
+                onGridClick,
+                onNightModeSwitch
+            )
             WeatherCurrentInfoView(currentWeatherState = weatherState.currentWeatherState)
             Spacer(modifier = Modifier.height(40.dp))
             WeatherHistoryQuickView(
@@ -105,22 +112,25 @@ fun WeatherScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val allPermissionsRevoked = locationPermissionState.permissions.size ==
-                    locationPermissionState.revokedPermissions.size
+                locationPermissionState.revokedPermissions.size
 
             val textToShow = if (!allPermissionsRevoked) {
                 "Yay! Thanks for letting me access your approximate location. " +
-                        "But you know what would be great? If you allow me to know where you " +
-                        "exactly are. Thank you!"
+                    "But you know what would be great? If you allow me to know where you " +
+                    "exactly are. Thank you!"
             } else if (!locationPermissionState.shouldShowRationale) {
                 "Getting your exact location is important for localising the Weather App.\n" +
-                        "Please grant us fine location to help us provide you with accurate weather information"
+                    "Please grant us fine location to help us provide you " +
+                    "with accurate weather information"
             } else {
                 "This app requires location permission!"
             }
 
             val buttonText = if (!allPermissionsRevoked) {
                 "Allow precise location"
-            } else "Request permissions"
+            } else {
+                "Request permissions"
+            }
 
             AnimatedVector(
                 drawable = R.drawable.avd_foggy,

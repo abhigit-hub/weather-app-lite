@@ -36,7 +36,7 @@ fun WeatherScreenDetailsContainer(
                 destinationsNavigator.navigateUp()
             },
             navigatePageInfo = {
-                //TODO: Do nothing as of now
+                // TODO: Do nothing as of now
             }
         )
     }
@@ -46,14 +46,18 @@ fun WeatherScreenDetailsContainer(
 fun WeatherDetailsScreen(
     viewModel: WeatherViewModel,
     navigateHome: () -> Unit,
-    navigatePageInfo: () -> Unit,
+    navigatePageInfo: () -> Unit
 ) {
     val weatherState = viewModel.state
 
     Column(
         modifier = Modifier.padding(horizontal = 30.dp, vertical = 40.dp)
     ) {
-        WeatherDetailsTopBarView(weatherState = weatherState, navigateHome = navigateHome, navigatePageInfo = navigatePageInfo)
+        WeatherDetailsTopBarView(
+            weatherState = weatherState,
+            navigateHome = navigateHome,
+            navigatePageInfo = navigatePageInfo
+        )
         WeatherDetailsCurrentInfoView(weatherState = weatherState)
         Spacer(modifier = Modifier.height(60.dp))
         WeatherDetailsHistoryQuickView(weatherState = weatherState)

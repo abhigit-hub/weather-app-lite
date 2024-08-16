@@ -19,7 +19,7 @@ fun WeatherDetailsTopBarView(
     weatherState: WeatherState,
     navigateHome: () -> Unit,
     navigatePageInfo: () -> Unit
-    ) {
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

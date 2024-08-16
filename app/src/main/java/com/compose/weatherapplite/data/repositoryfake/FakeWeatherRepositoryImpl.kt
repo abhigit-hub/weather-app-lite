@@ -21,7 +21,7 @@ import javax.inject.Singleton
 class FakeWeatherRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi,
     private val geoCodingApi: GeoCodingApi
-): WeatherRepository {
+) : WeatherRepository {
 
     override suspend fun getWeatherForecastAndCurrent(
         latitude: String,
@@ -193,7 +193,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             "2024-08-21T23:00",
             "2024-08-22T23:00",
             "2024-08-23T23:00",
-            "2024-08-24T23:00",
+            "2024-08-24T23:00"
         )
         val fakeTemperatureList = listOf<Double>(
             7.1,
@@ -367,7 +367,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             8.8,
             8.7,
             8.6,
-            8.5,
+            8.5
         )
         val fakeHumidityList = listOf(
             70,
@@ -541,7 +541,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             83,
             82,
             81,
-            80,
+            80
         )
         val fakeWindspeedList = listOf<Double>(
             8.3,
@@ -715,7 +715,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             13.8,
             13.7,
             13.6,
-            13.5,
+            13.5
         )
         val fakeWeatherCodeList = listOf<Int>(
             2,
@@ -889,7 +889,7 @@ class FakeWeatherRepositoryImpl @Inject constructor(
             2,
             2,
             3,
-            3,
+            3
         )
 
         val fakeGeoCodingLocationPune = GoogleGeoCodingDTO(

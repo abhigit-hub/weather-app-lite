@@ -19,14 +19,14 @@ data class CurrentUnitDTO(
     val time: String,
     val interval: String,
     @SerializedName("temperature_2m") val temperature: String,
-    @SerializedName("windspeed_10m") val windspeed: String,
+    @SerializedName("windspeed_10m") val windspeed: String
 )
 
 data class HourlyUnitDTO(
     val time: String,
     @SerializedName("temperature_2m") val temperature: String,
     @SerializedName("relativehumidity_2m") val humidity: String,
-    @SerializedName("windspeed_10m") val windspeed: String,
+    @SerializedName("windspeed_10m") val windspeed: String
 )
 
 data class CurrentDTO(

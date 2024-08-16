@@ -4,19 +4,20 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class WeatherState(
-    val weatherMenuSelectorType: WeatherMenuSelectorType = WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
+    val weatherMenuSelectorType: WeatherMenuSelectorType =
+        WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
     val locationState: LocationState = LocationState(),
     val currentWeatherState: CurrentWeatherState = CurrentWeatherState(),
     val tomorrowWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
     val nextTenDaysWeatherItemListState: List<WeatherItemMetaState> = emptyList(),
-    val nextTenDaysWeatherDetailsItemListState: List<WeatherDetailsItemMetaState> = emptyList(),
+    val nextTenDaysWeatherDetailsItemListState: List<WeatherDetailsItemMetaState> = emptyList()
 )
 
 data class LocationState(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
     val cityName: String = "",
-    val cityShortenedName: String = "",
+    val cityShortenedName: String = ""
 )
 
 data class CurrentWeatherState(

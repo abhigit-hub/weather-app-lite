@@ -28,12 +28,12 @@ fun WeatherDetailsCurrentInfoView(
         Text(
             text = weatherState.currentWeatherState.temperature,
             style = WeatherTypography.displayLarge,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.primary
         )
         Text(
             text = weatherState.currentWeatherState.weatherType.weatherType,
             style = WeatherTypography.titleLarge,
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.secondary
         )
     }
 

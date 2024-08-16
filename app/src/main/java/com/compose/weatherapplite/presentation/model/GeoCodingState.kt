@@ -2,5 +2,5 @@ package com.compose.weatherapplite.presentation.model
 
 data class GeoCodingState(
     val cityName: String,
-    val cityShortenedName: String,
+    val cityShortenedName: String
 )

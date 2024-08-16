@@ -8,8 +8,11 @@ fun GoogleGeoCodingDTO.toGeoCodingInfo(): GeoCodingInfo {
     val cityName = this.results.filter {
         it.types.contains(GeoCodingApi.ADDITIONAL_QUERY_PARAMS_FOR_RESULT_TYPE)
     }.let {
-        if (it.isNotEmpty()) it[0].formattedAddress
-        else "Unknown Locality"
+        if (it.isNotEmpty()) {
+            it[0].formattedAddress
+        } else {
+            "Unknown Locality"
+        }
     }
 
     return GeoCodingInfo(
