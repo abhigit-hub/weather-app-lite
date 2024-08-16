@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.components
 
 import androidx.annotation.DrawableRes
@@ -17,6 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.delay
 
+private const val ANIM_DURATION = 14000L
+
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun AnimatedVector(
@@ -30,7 +34,7 @@ fun AnimatedVector(
     suspend fun runAnimation() {
         while (true) {
             if (isRunning.getAndSet(true)) {
-                delay(14000)
+                delay(ANIM_DURATION)
             }
 
             atEnd = !atEnd

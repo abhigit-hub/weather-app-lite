@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.annotation.DrawableRes

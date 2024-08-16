@@ -9,6 +9,22 @@ import com.compose.weatherapplite.presentation.model.WeatherItemMetaState
 import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.model.WeatherType
+import com.compose.weatherapplite.utils.WeatherAppConstants
+import com.compose.weatherapplite.utils.WeatherAppConstants.TIME_12_HOUR_FORMAT
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_CLEAR_SKY_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_DRIZZLE_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_FOGGY_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_HEAVYRAIN_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_OVERCAST_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_RAIN_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_SNOWFALL_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_CODE_THUNDERSTORM_LIST
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_HIGH
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_LOW
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_MODERATE
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_NONE
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_VERY_HIGH
+import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_VERY_LOW
 import com.compose.weatherapplite.utils.convertToWeatherAppLiteDate
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -75,7 +91,7 @@ fun HourlyInfo.toWeatherDetailsItemListState(): List<WeatherDetailsItemMetaState
             if (temperature[index] > lastKnownMaxTemperature || lastKnownMaxTemperature == -1.0) {
                 lastKnownMaxTemperature = temperature[index]
             }
-            if ((index % 12) == 0 && (index / 12) % 2 == 1) {
+            if ((index % TIME_12_HOUR_FORMAT) == 0 && (index / TIME_12_HOUR_FORMAT) % 2 == 1) {
                 lastKnownWeatherDetailsItemMetaState!!.weatherCode =
                     weatherCodes[index].toWeatherType()
             }
@@ -129,7 +145,7 @@ private fun checkDates(
         }
 
         WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
-            LocalDate.now().plusDays(10)
+            LocalDate.now().plusDays(WeatherAppConstants.WEATHER_FORECAST_MAX)
         }
     }
 
@@ -163,28 +179,28 @@ private fun checkIfDateRangeMatches(
 
 fun Int.toWeatherType(): WeatherType {
     return when (this) {
-        0 -> WeatherType.ClearSky
-        1, 2, 3 -> WeatherType.Overcast
-        45, 48 -> WeatherType.Foggy
-        51, 53, 55, 56, 57 -> WeatherType.Drizzle
-        61, 63, 65 -> WeatherType.Rain
-        66, 67 -> WeatherType.HeavyRain
-        71, 73, 75 -> WeatherType.SnowFall
-        95, 96, 99 -> WeatherType.Thunderstorm
+        in WEATHER_CODE_CLEAR_SKY_LIST -> WeatherType.ClearSky
+        in WEATHER_CODE_OVERCAST_LIST -> WeatherType.Overcast
+        in WEATHER_CODE_FOGGY_LIST -> WeatherType.Foggy
+        in WEATHER_CODE_DRIZZLE_LIST -> WeatherType.Drizzle
+        in WEATHER_CODE_RAIN_LIST -> WeatherType.Rain
+        in WEATHER_CODE_HEAVYRAIN_LIST -> WeatherType.HeavyRain
+        in WEATHER_CODE_SNOWFALL_LIST -> WeatherType.SnowFall
+        in WEATHER_CODE_THUNDERSTORM_LIST -> WeatherType.Thunderstorm
         else -> WeatherType.ClearSky
     }
 }
 
 fun Int.toRainLevel(): Int {
     return when (this) {
-        0 -> 0
-        1, 2, 3 -> 10
-        45, 48 -> 0
-        51, 53, 55, 56, 57 -> 30
-        61, 63, 65 -> 60
-        66, 67 -> 100
-        71, 73, 75 -> 10
-        95, 96, 99 -> 80
-        else -> 0
+        in WEATHER_CODE_CLEAR_SKY_LIST -> WEATHER_RAIN_LEVEL_NONE
+        in WEATHER_CODE_OVERCAST_LIST -> WEATHER_RAIN_LEVEL_VERY_LOW
+        in WEATHER_CODE_FOGGY_LIST -> WEATHER_RAIN_LEVEL_NONE
+        in WEATHER_CODE_DRIZZLE_LIST -> WEATHER_RAIN_LEVEL_LOW
+        in WEATHER_CODE_RAIN_LIST -> WEATHER_RAIN_LEVEL_MODERATE
+        in WEATHER_CODE_HEAVYRAIN_LIST -> WEATHER_RAIN_LEVEL_VERY_HIGH
+        in WEATHER_CODE_SNOWFALL_LIST -> WEATHER_RAIN_LEVEL_VERY_LOW
+        in WEATHER_CODE_THUNDERSTORM_LIST -> WEATHER_RAIN_LEVEL_HIGH
+        else -> WEATHER_RAIN_LEVEL_NONE
     }
 }

@@ -7,6 +7,7 @@ composeLatest = "1.6.0-alpha08"
 hiltNavigationCompose = "1.1.0"
 composeMap = "4.1.1"
 destinations = "1.9.54"
+detekt = "1.23.6"
 gradleVersions = "0.49.0"
 hilt = "2.48.1"
 ktlint = "11.6.1"
@@ -64,3 +65,4 @@ gradle-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleV
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

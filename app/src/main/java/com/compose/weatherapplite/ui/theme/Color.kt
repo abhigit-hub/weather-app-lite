@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.compose.weatherapplite.ui.theme
 
 import androidx.compose.ui.graphics.Color

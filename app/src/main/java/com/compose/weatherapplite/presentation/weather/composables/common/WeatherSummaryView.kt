@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.common
 
 import androidx.annotation.DrawableRes
@@ -27,12 +29,14 @@ import com.compose.weatherapplite.R
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 
+private const val DIMENS_CONTAINER_HEIGHT = 0.2f
+
 @Composable
 fun WeatherSummaryView(currentWeatherState: CurrentWeatherState) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.2f)
+            .fillMaxHeight(DIMENS_CONTAINER_HEIGHT)
             .clip(RoundedCornerShape(15.dp))
             .shadow(
                 elevation = 30.dp,

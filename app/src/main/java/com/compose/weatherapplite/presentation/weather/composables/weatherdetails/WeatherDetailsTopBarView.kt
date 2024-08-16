@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weatherdetails
 
 import androidx.compose.foundation.layout.Row
@@ -14,6 +16,11 @@ import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherIconView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 
+private const val DIMENS_CONTAINER_HEIGHT = 0.13f
+private const val DIMENS_BACK_LOCATION_WEIGHT = 0.76f
+private const val DIMENS_ICON_HEIGHT = 0.4f
+private const val DIMENS_ICON_WEIGHT = 0.12f
+
 @Composable
 fun WeatherDetailsTopBarView(
     weatherState: WeatherState,
@@ -23,11 +30,11 @@ fun WeatherDetailsTopBarView(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.13f),
+            .fillMaxHeight(DIMENS_CONTAINER_HEIGHT),
         verticalAlignment = Alignment.CenterVertically
     ) {
         WeatherIconView(
-            modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
+            modifier = Modifier.fillMaxHeight(DIMENS_ICON_HEIGHT).weight(DIMENS_ICON_WEIGHT),
             R.drawable.vd_action_back,
             "go back to previous page",
             onItemClick = navigateHome
@@ -37,12 +44,12 @@ fun WeatherDetailsTopBarView(
             text = weatherState.locationState.cityShortenedName,
             color = MaterialTheme.colorScheme.primary,
             style = WeatherTypography.headlineSmall,
-            modifier = Modifier.fillMaxWidth().weight(0.76f),
+            modifier = Modifier.fillMaxWidth().weight(DIMENS_BACK_LOCATION_WEIGHT),
             textAlign = TextAlign.Center
         )
 
         WeatherIconView(
-            modifier = Modifier.fillMaxHeight(0.4f).weight(0.12f),
+            modifier = Modifier.fillMaxHeight(DIMENS_ICON_HEIGHT).weight(DIMENS_ICON_WEIGHT),
             R.drawable.vd_action_page_info,
             "Page Info",
             onItemClick = navigatePageInfo

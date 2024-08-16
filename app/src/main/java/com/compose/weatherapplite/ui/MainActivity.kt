@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.ui
 
 import android.os.Bundle
