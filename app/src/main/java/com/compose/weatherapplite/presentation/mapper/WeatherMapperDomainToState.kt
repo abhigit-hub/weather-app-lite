@@ -17,8 +17,12 @@ fun WeatherInfo.toWeatherState(): WeatherState {
     return WeatherState(
         locationState = this.toLocationState(),
         currentWeatherState = this.toCurrentWeatherState(),
-        tomorrowWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow),
-        nextTenDaysWeatherItemListState = this.hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays),
+        tomorrowWeatherItemListState = this.hourly.toWeatherItemListState(
+            WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow
+        ),
+        nextTenDaysWeatherItemListState = this.hourly.toWeatherItemListState(
+            WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays
+        ),
         nextTenDaysWeatherDetailsItemListState = this.hourly.toWeatherDetailsItemListState()
     )
 }
@@ -40,7 +44,9 @@ fun WeatherInfo.toCurrentWeatherState(): CurrentWeatherState {
         wind = "${current.windspeed} ${currentUnit.windspeed}",
         humidity = "${hourly.humidity[0]}%",
         rain = "${current.weatherCode.toRainLevel()}%",
-        todaysWeatherItemListState = hourly.toWeatherItemListState(WeatherMenuSelectorType.WeatherMenuSelectorTypeToday)
+        todaysWeatherItemListState = hourly.toWeatherItemListState(
+            WeatherMenuSelectorType.WeatherMenuSelectorTypeToday
+        )
     )
 }
 
@@ -69,8 +75,10 @@ fun HourlyInfo.toWeatherDetailsItemListState(): List<WeatherDetailsItemMetaState
             if (temperature[index] > lastKnownMaxTemperature || lastKnownMaxTemperature == -1.0) {
                 lastKnownMaxTemperature = temperature[index]
             }
-            if ((index % 12) == 0 && (index / 12) % 2 == 1)
-                lastKnownWeatherDetailsItemMetaState!!.weatherCode = weatherCodes[index].toWeatherType()
+            if ((index % 12) == 0 && (index / 12) % 2 == 1) {
+                lastKnownWeatherDetailsItemMetaState!!.weatherCode =
+                    weatherCodes[index].toWeatherType()
+            }
 
             if (index != time.size - 1) return@forEachIndexed
         }
@@ -87,11 +95,13 @@ fun HourlyInfo.toWeatherDetailsItemListState(): List<WeatherDetailsItemMetaState
     return weatherDetailsItemMetaStateList
 }
 
-fun HourlyInfo.toWeatherItemListState(weatherMenuSelectorType: WeatherMenuSelectorType): List<WeatherItemMetaState> {
+fun HourlyInfo.toWeatherItemListState(
+    weatherMenuSelectorType: WeatherMenuSelectorType
+): List<WeatherItemMetaState> {
     val weatherItemList = mutableListOf<WeatherItemMetaState>()
 
     time.forEachIndexed { index, dateToBeChecked ->
-        if (checkDates(weatherMenuSelectorType, dateToBeChecked))
+        if (checkDates(weatherMenuSelectorType, dateToBeChecked)) {
             weatherItemList.add(
                 WeatherItemMetaState(
                     time = time[index],
@@ -99,6 +109,7 @@ fun HourlyInfo.toWeatherItemListState(weatherMenuSelectorType: WeatherMenuSelect
                     weatherCode = weatherCodes[index].toWeatherType()
                 )
             )
+        }
     }
 
     return weatherItemList
@@ -112,9 +123,11 @@ private fun checkDates(
         WeatherMenuSelectorType.WeatherMenuSelectorTypeToday -> {
             LocalDate.now()
         }
+
         WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> {
             LocalDate.now().plusDays(1)
         }
+
         WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
             LocalDate.now().plusDays(10)
         }
@@ -125,6 +138,7 @@ private fun checkDates(
         WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> {
             checkIfDateMatches(localDate = dateToBeChecked.toLocalDate(), filterDate = filterDate)
         }
+
         WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
             checkIfDateRangeMatches(
                 localDate = dateToBeChecked.toLocalDate(),
@@ -150,13 +164,13 @@ private fun checkIfDateRangeMatches(
 fun Int.toWeatherType(): WeatherType {
     return when (this) {
         0 -> WeatherType.ClearSky
-        1,2,3 -> WeatherType.Overcast
-        45,48 -> WeatherType.Foggy
-        51,53,55,56,57 -> WeatherType.Drizzle
-        61,63,65 -> WeatherType.Rain
-        66,67 -> WeatherType.HeavyRain
-        71,73,75 -> WeatherType.SnowFall
-        95,96,99 -> WeatherType.Thunderstorm
+        1, 2, 3 -> WeatherType.Overcast
+        45, 48 -> WeatherType.Foggy
+        51, 53, 55, 56, 57 -> WeatherType.Drizzle
+        61, 63, 65 -> WeatherType.Rain
+        66, 67 -> WeatherType.HeavyRain
+        71, 73, 75 -> WeatherType.SnowFall
+        95, 96, 99 -> WeatherType.Thunderstorm
         else -> WeatherType.ClearSky
     }
 }
@@ -164,13 +178,13 @@ fun Int.toWeatherType(): WeatherType {
 fun Int.toRainLevel(): Int {
     return when (this) {
         0 -> 0
-        1,2,3 -> 10
-        45,48 -> 0
-        51,53,55,56,57 -> 30
-        61,63,65 -> 60
-        66,67 -> 100
-        71,73,75 -> 10
-        95,96,99 -> 80
+        1, 2, 3 -> 10
+        45, 48 -> 0
+        51, 53, 55, 56, 57 -> 30
+        61, 63, 65 -> 60
+        66, 67 -> 100
+        71, 73, 75 -> 10
+        95, 96, 99 -> 80
         else -> 0
     }
 }

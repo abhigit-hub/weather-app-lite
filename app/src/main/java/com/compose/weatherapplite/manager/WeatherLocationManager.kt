@@ -33,7 +33,11 @@ class WeatherLocationManager @Inject constructor(
         if (::fusedLocationProviderClient.isInitialized) {
             fusedLocationProviderClient.lastLocation.addOnSuccessListener {
                 it?.let {
-                    Log.d(TAG, "Location update received ==> (latitude = ${it.latitude}, longitude = ${it.longitude})")
+                    Log.d(
+                        TAG,
+                        "Location update received ==> (latitude = ${it.latitude}, " +
+                            "longitude = ${it.longitude})"
+                    )
                     onLocationUpdated(it)
                 }
             }

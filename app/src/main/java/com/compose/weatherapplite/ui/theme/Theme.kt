@@ -40,7 +40,7 @@ val LightColors = lightColorScheme(
     inverseOnSurface = md_theme_light_inverseOnSurface,
     inverseSurface = md_theme_light_inverseSurface,
     inversePrimary = md_theme_light_inversePrimary,
-    surfaceTint = md_theme_light_surfaceTint,
+    surfaceTint = md_theme_light_surfaceTint
 )
 
 val DarkColors = darkColorScheme(
@@ -70,7 +70,7 @@ val DarkColors = darkColorScheme(
     inverseOnSurface = md_theme_dark_inverseOnSurface,
     inverseSurface = md_theme_dark_inverseSurface,
     inversePrimary = md_theme_dark_inversePrimary,
-    surfaceTint = md_theme_dark_surfaceTint,
+    surfaceTint = md_theme_dark_surfaceTint
 )
 
 @Composable
@@ -88,7 +88,8 @@ fun WeatherAppLiteTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isGlobalDarkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
+                !isGlobalDarkTheme
         }
     }
 

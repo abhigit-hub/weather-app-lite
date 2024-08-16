@@ -34,16 +34,16 @@ fun WeatherCurrentInfoView(
                 Text(
                     text = currentWeatherState.temperature,
                     style = WeatherTypography.displayLarge,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = currentWeatherState.weatherType.weatherType,
                     style = WeatherTypography.titleLarge,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.secondary
                 )
             }
 
-            if (!currentWeatherState.weatherType.isUnknownWeather())
+            if (!currentWeatherState.weatherType.isUnknownWeather()) {
                 AnimatedVector(
                     drawable = currentWeatherState.weatherType.toAnimatedVectorDrawable(),
                     modifier = Modifier
@@ -52,6 +52,7 @@ fun WeatherCurrentInfoView(
                         .weight(0.4f)
                         .scale(1.25f, 1.25f)
                 )
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))

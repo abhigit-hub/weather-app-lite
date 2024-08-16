@@ -1,6 +1,5 @@
 package com.compose.weatherapplite.di
 
-import com.compose.weatherapplite.data.repository.WeatherRepositoryImpl
 import com.compose.weatherapplite.data.repositoryfake.FakeWeatherRepositoryImpl
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import dagger.Binds

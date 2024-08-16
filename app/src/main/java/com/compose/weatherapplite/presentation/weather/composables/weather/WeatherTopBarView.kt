@@ -27,7 +27,7 @@ fun WeatherTopBarView(
     isDarkThemeEnabled: Boolean,
     onGridClick: () -> Unit,
     onNightModeSwitch: () -> Unit
-    ) {
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -61,8 +61,11 @@ fun WeatherTopBarView(
             modifier = Modifier
                 .fillMaxHeight(0.4f)
                 .weight(0.12f),
-            drawable = if (isDarkThemeEnabled) R.drawable.vd_action_dark_mode
-                else R.drawable.vd_action_light_mode,
+            drawable = if (isDarkThemeEnabled) {
+                R.drawable.vd_action_dark_mode
+            } else {
+                R.drawable.vd_action_light_mode
+            },
             onItemClick = {
                 onNightModeSwitch()
             }

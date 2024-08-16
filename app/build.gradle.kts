@@ -1,8 +1,11 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -42,6 +45,15 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
+
+    ktlint {
+        android = true // Enable Android-specific linting rules
+        ignoreFailures = false // Fail the build if KtLint finds any issues
+        reporters {
+            reporter(ReporterType.PLAIN) // Output KtLint results in plain text format
+            reporter(ReporterType.HTML) // Output KtLint results in HTML format
+        }
     }
 
     packaging {

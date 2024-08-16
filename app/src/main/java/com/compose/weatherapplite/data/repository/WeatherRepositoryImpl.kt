@@ -9,22 +9,29 @@ import com.compose.weatherapplite.domain.model.GeoCodingInfo
 import com.compose.weatherapplite.domain.model.WeatherInfo
 import com.compose.weatherapplite.domain.repository.WeatherRepository
 import com.compose.weatherapplite.utils.Resource
-import retrofit2.HttpException
 import javax.inject.Inject
 import javax.inject.Singleton
+import retrofit2.HttpException
 
 @Singleton
 class WeatherRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi,
     private val geoCodingApi: GeoCodingApi
-): WeatherRepository {
+) : WeatherRepository {
     companion object {
         private val TAG = WeatherRepositoryImpl::class.java.simpleName
     }
 
-    override suspend fun getWeatherForecastAndCurrent(latitude: String, longitude: String): Resource<WeatherInfo> {
+    override suspend fun getWeatherForecastAndCurrent(
+        latitude: String,
+        longitude: String
+    ): Resource<WeatherInfo> {
         return try {
-            Log.d(TAG, "REQ ==> getWeatherForecastAndCurrent() ==> (latitude = $latitude, longitude = $longitude)")
+            Log.d(
+                TAG,
+                "REQ ==> getWeatherForecastAndCurrent() ==> (latitude = $latitude," +
+                    " longitude = $longitude)"
+            )
             val response = weatherApi.getForecastAndCurrentWeather(latitude, longitude)
             Log.d(TAG, "RESP <== getWeatherForecastAndCurrent() <== $response)")
 
@@ -36,7 +43,10 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getLocalityBasedOnCoordinates(latitude: String, longitude: String): Resource<GeoCodingInfo> {
+    override suspend fun getLocalityBasedOnCoordinates(
+        latitude: String,
+        longitude: String
+    ): Resource<GeoCodingInfo> {
         return try {
             val latlng = "$latitude,$longitude"
 
@@ -46,7 +56,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
             val data = response.toGeoCodingInfo()
             Resource.Success(data = data)
-        } catch (e:HttpException) {
+        } catch (e: HttpException) {
             e.printStackTrace()
             Resource.Error("Failed api request")
         }

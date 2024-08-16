@@ -1,8 +1,8 @@
 package com.compose.weatherapplite.presentation.weather
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,17 +16,17 @@ import com.compose.weatherapplite.presentation.model.WeatherMenuSelectorType
 import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.concurrent.atomic.AtomicBoolean
+import javax.inject.Inject
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.util.concurrent.atomic.AtomicBoolean
-import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val repository: WeatherRepository,
     private val weatherLocationManager: WeatherLocationManager
-): ViewModel() {
+) : ViewModel() {
 
     companion object {
         val TAG: String = WeatherViewModel::class.java.simpleName
@@ -114,9 +114,11 @@ class WeatherViewModel @Inject constructor(
                         locationState = weatherState.locationState,
                         weatherMenuSelectorType = weatherState.weatherMenuSelectorType,
                         currentWeatherState = weatherState.currentWeatherState,
-                        nextTenDaysWeatherItemListState = weatherState.nextTenDaysWeatherItemListState,
+                        nextTenDaysWeatherItemListState =
+                        weatherState.nextTenDaysWeatherItemListState,
                         tomorrowWeatherItemListState = weatherState.tomorrowWeatherItemListState,
-                        nextTenDaysWeatherDetailsItemListState = weatherState.nextTenDaysWeatherDetailsItemListState
+                        nextTenDaysWeatherDetailsItemListState =
+                        weatherState.nextTenDaysWeatherDetailsItemListState
                     )
                 }
             }

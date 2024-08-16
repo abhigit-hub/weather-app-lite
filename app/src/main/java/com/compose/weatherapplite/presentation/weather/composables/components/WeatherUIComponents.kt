@@ -14,8 +14,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import kotlinx.coroutines.delay
 import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
@@ -29,8 +29,9 @@ fun AnimatedVector(
 
     suspend fun runAnimation() {
         while (true) {
-            if (isRunning.getAndSet(true))
+            if (isRunning.getAndSet(true)) {
                 delay(14000)
+            }
 
             atEnd = !atEnd
         }

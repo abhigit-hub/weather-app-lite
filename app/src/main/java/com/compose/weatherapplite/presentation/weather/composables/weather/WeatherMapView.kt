@@ -21,17 +21,19 @@ import com.google.maps.android.compose.rememberCameraPositionState
 fun WeatherMapView(
     locationState: LocationState,
     isDarkThemeEnabledState: Boolean
-    ) {
+) {
     if (locationState.latitude != 0.0 && locationState.longitude != 0.0) {
-
         val latLng = LatLng(locationState.latitude, locationState.longitude)
         val cameraPositionState = rememberCameraPositionState {
             position = CameraPosition.fromLatLngZoom(latLng, 15f)
         }
         val mapProperties = MapProperties(
             mapStyleOptions = MapStyleOptions(
-                if (isDarkThemeEnabledState) WeatherAppConstants.MAP_STYLE_DARK
-                else WeatherAppConstants.MAP_STYLE_LIGHT
+                if (isDarkThemeEnabledState) {
+                    WeatherAppConstants.MAP_STYLE_DARK
+                } else {
+                    WeatherAppConstants.MAP_STYLE_LIGHT
+                }
             )
         )
 
@@ -43,8 +45,10 @@ fun WeatherMapView(
             properties = mapProperties
         ) {
             Marker(
-                state = MarkerState(position = LatLng(locationState.latitude, locationState.longitude)),
-                title = locationState.cityShortenedName,
+                state = MarkerState(
+                    position = LatLng(locationState.latitude, locationState.longitude)
+                ),
+                title = locationState.cityShortenedName
             )
         }
     }

@@ -15,14 +15,14 @@ data class CurrentUnitInfo(
     val time: String,
     val interval: String,
     val temperature: String,
-    val windspeed: String,
+    val windspeed: String
 )
 
 data class HourlyUnitInfo(
     val time: String,
     val temperature: String,
     val humidity: String,
-    val windspeed: String,
+    val windspeed: String
 )
 
 data class CurrentInfo(

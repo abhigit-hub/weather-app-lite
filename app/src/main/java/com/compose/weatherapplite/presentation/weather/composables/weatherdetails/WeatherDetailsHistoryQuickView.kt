@@ -36,7 +36,7 @@ fun WeatherDetailsHistoryQuickView(
 fun WeatherDetailsHistoryQuickViewItem(weatherDetailsItemMetaData: WeatherDetailsItemMetaState) {
     Row(
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = weatherDetailsItemMetaData.time.toDayOfWeek(),
