@@ -13,6 +13,7 @@ fun WeatherType.toDrawable(): Int {
         is WeatherType.HeavyRain -> R.drawable.vd_heavy_rain
         is WeatherType.SnowFall -> R.drawable.vd_snowfall
         is WeatherType.Thunderstorm -> R.drawable.vd_thunderstorm
+        else -> R.drawable.vd_clear_sky
     }
 }
 
@@ -26,5 +27,6 @@ fun WeatherType.toAnimatedVectorDrawable(): Int {
         is WeatherType.HeavyRain -> R.drawable.avd_heavy_rain
         is WeatherType.SnowFall -> R.drawable.avd_snowfall
         is WeatherType.Thunderstorm -> R.drawable.avd_thunderstorm
+        else -> R.drawable.avd_clear_sky
     }
 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import com.compose.weatherapplite.presentation.model.CurrentWeatherState
+import com.compose.weatherapplite.presentation.model.isUnknownWeather
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherSummaryView
 import com.compose.weatherapplite.presentation.weather.composables.components.AnimatedVector
 import com.compose.weatherapplite.ui.theme.WeatherTypography
@@ -42,14 +43,15 @@ fun WeatherCurrentInfoView(
                 )
             }
 
-            AnimatedVector(
-                drawable = currentWeatherState.weatherType.toAnimatedVectorDrawable(),
-                modifier = Modifier
-                    .size(150.dp)
-                    .fillMaxWidth()
-                    .weight(0.4f)
-                    .scale(1.25f, 1.25f)
-            )
+            if (!currentWeatherState.weatherType.isUnknownWeather())
+                AnimatedVector(
+                    drawable = currentWeatherState.weatherType.toAnimatedVectorDrawable(),
+                    modifier = Modifier
+                        .size(150.dp)
+                        .fillMaxWidth()
+                        .weight(0.4f)
+                        .scale(1.25f, 1.25f)
+                )
         }
 
         Spacer(modifier = Modifier.height(10.dp))

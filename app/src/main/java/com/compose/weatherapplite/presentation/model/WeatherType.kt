@@ -1,6 +1,7 @@
 package com.compose.weatherapplite.presentation.model
 
 sealed class WeatherType(val weatherType: String) {
+    data object Unknown: WeatherType("Unknown")
     data object ClearSky: WeatherType("Clear Sky")
     data object Overcast: WeatherType("Overcast")
     data object Foggy: WeatherType("Foggy")
@@ -10,3 +11,6 @@ sealed class WeatherType(val weatherType: String) {
     data object SnowFall: WeatherType("Snow Fall")
     data object Thunderstorm: WeatherType("Thunderstorm")
 }
+
+fun WeatherType.isUnknownWeather(): Boolean =
+    this == WeatherType.Unknown

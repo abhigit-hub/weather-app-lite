@@ -21,7 +21,7 @@ data class LocationState(
 
 data class CurrentWeatherState(
     val date: String = "",
-    val weatherType: WeatherType = WeatherType.ClearSky,
+    val weatherType: WeatherType = WeatherType.Unknown,
     val temperature: String = "",
     val wind: String = "",
     val humidity: String = "",
