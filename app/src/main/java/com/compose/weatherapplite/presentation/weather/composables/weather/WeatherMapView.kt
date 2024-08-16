@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.compose.foundation.layout.padding
@@ -17,6 +19,8 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 
+private const val DIMENS_CAMERA_ZOOM_FACTOR = 15f
+
 @Composable
 fun WeatherMapView(
     locationState: LocationState,
@@ -25,7 +29,7 @@ fun WeatherMapView(
     if (locationState.latitude != 0.0 && locationState.longitude != 0.0) {
         val latLng = LatLng(locationState.latitude, locationState.longitude)
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(latLng, 15f)
+            position = CameraPosition.fromLatLngZoom(latLng, DIMENS_CAMERA_ZOOM_FACTOR)
         }
         val mapProperties = MapProperties(
             mapStyleOptions = MapStyleOptions(

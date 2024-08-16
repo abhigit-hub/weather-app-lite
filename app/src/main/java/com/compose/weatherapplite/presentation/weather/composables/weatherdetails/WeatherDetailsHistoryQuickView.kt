@@ -1,6 +1,7 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weatherdetails
 
-import androidx.compose.animation.graphics.ExperimentalAnimationGraphicsApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,9 @@ import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.utils.toAnimatedVectorDrawable
 import com.compose.weatherapplite.utils.toDayOfWeek
 
+private const val DIMENS_DAY_OF_WEEK_WEIGHT = 0.2f
+private const val DIMENS_TEMPERATURE_BAR_WEIGHT = 0.55f
+
 @Composable
 fun WeatherDetailsHistoryQuickView(
     weatherState: WeatherState
@@ -31,7 +35,6 @@ fun WeatherDetailsHistoryQuickView(
     }
 }
 
-@OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun WeatherDetailsHistoryQuickViewItem(weatherDetailsItemMetaData: WeatherDetailsItemMetaState) {
     Row(
@@ -43,14 +46,14 @@ fun WeatherDetailsHistoryQuickViewItem(weatherDetailsItemMetaData: WeatherDetail
             color = MaterialTheme.colorScheme.primary,
             style = WeatherTypography.titleMedium,
             modifier = Modifier
-                .weight(0.2f)
+                .weight(DIMENS_DAY_OF_WEEK_WEIGHT)
                 .padding(start = 12.dp)
         )
 
         WeatherDetailsTemperatureBarView(
             minTemperature = weatherDetailsItemMetaData.minTemperature,
             maxTemperature = weatherDetailsItemMetaData.maxTemperature,
-            modifier = Modifier.weight(0.55f)
+            modifier = Modifier.weight(DIMENS_TEMPERATURE_BAR_WEIGHT)
         )
 
         AnimatedVector(

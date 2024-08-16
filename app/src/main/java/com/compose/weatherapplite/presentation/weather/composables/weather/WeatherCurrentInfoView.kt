@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.compose.foundation.layout.Column
@@ -20,6 +22,11 @@ import com.compose.weatherapplite.presentation.weather.composables.components.An
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.compose.weatherapplite.utils.toAnimatedVectorDrawable
 
+private const val DIMENS_CONTAINER_HEIGHT = 0.17f
+private const val DIMENS_CONTAINER_WEIGHT = 0.5f
+private const val DIMENS_ANIMATED_VECTOR_WEIGHT = 0.4f
+private const val DIMENS_ANIMATED_VECTOR_SCALE = 1.25f
+
 @Composable
 fun WeatherCurrentInfoView(
     currentWeatherState: CurrentWeatherState
@@ -28,8 +35,8 @@ fun WeatherCurrentInfoView(
         Row {
             Column(
                 modifier = Modifier
-                    .fillMaxHeight(0.17f)
-                    .weight(0.5f)
+                    .fillMaxHeight(DIMENS_CONTAINER_HEIGHT)
+                    .weight(DIMENS_CONTAINER_WEIGHT)
             ) {
                 Text(
                     text = currentWeatherState.temperature,
@@ -49,8 +56,8 @@ fun WeatherCurrentInfoView(
                     modifier = Modifier
                         .size(150.dp)
                         .fillMaxWidth()
-                        .weight(0.4f)
-                        .scale(1.25f, 1.25f)
+                        .weight(DIMENS_ANIMATED_VECTOR_WEIGHT)
+                        .scale(DIMENS_ANIMATED_VECTOR_SCALE, DIMENS_ANIMATED_VECTOR_SCALE)
                 )
             }
         }

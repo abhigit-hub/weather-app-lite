@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -6,6 +7,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -53,6 +55,13 @@ android {
         reporters {
             reporter(ReporterType.PLAIN) // Output KtLint results in plain text format
             reporter(ReporterType.HTML) // Output KtLint results in HTML format
+        }
+    }
+
+    tasks.withType<Detekt>().configureEach {
+        reports {
+            html.required.set(true) // observe findings in browser with structure and code snippets
+            md.required.set(true) // simple Markdown format
         }
     }
 

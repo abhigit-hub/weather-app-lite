@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather
 
 import androidx.compose.foundation.background
@@ -35,9 +37,7 @@ fun WeatherScreenDetailsContainer(
             navigateHome = {
                 destinationsNavigator.navigateUp()
             },
-            navigatePageInfo = {
-                // TODO: Do nothing as of now
-            }
+            navigatePageInfo = {}
         )
     }
 }

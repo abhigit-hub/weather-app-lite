@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weather
 
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +23,11 @@ import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherIconView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 
+private const val DIMENS_CONTAINER_HEIGHT = 0.13f
+private const val DIMENS_TOP_BAR_LOCATION_DATE_WEIGHT = 0.86f
+private const val DIMENS_TOP_BAR_ICON_HEIGHT = 0.4f
+private const val DIMENS_TOP_BAR_ICON_WEIGHT = 0.12f
+
 @Composable
 fun WeatherTopBarView(
     weatherState: WeatherState,
@@ -31,13 +38,13 @@ fun WeatherTopBarView(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.13f),
+            .fillMaxHeight(DIMENS_CONTAINER_HEIGHT),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(0.86f)
+                .weight(DIMENS_TOP_BAR_LOCATION_DATE_WEIGHT)
                 .padding(3.dp),
             verticalArrangement = Arrangement.Center
         ) {
@@ -59,8 +66,8 @@ fun WeatherTopBarView(
 
         WeatherIconView(
             modifier = Modifier
-                .fillMaxHeight(0.4f)
-                .weight(0.12f),
+                .fillMaxHeight(DIMENS_TOP_BAR_ICON_HEIGHT)
+                .weight(DIMENS_TOP_BAR_ICON_WEIGHT),
             drawable = if (isDarkThemeEnabled) {
                 R.drawable.vd_action_dark_mode
             } else {
@@ -74,8 +81,8 @@ fun WeatherTopBarView(
 
         WeatherIconView(
             modifier = Modifier
-                .fillMaxHeight(0.4f)
-                .weight(0.12f),
+                .fillMaxHeight(DIMENS_TOP_BAR_ICON_HEIGHT)
+                .weight(DIMENS_TOP_BAR_ICON_WEIGHT),
             R.drawable.vd_action_menu,
             "detailed weather",
             onItemClick = onGridClick

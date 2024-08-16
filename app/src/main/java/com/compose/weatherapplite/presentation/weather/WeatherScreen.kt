@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather
 
 import android.Manifest
@@ -27,6 +29,7 @@ import com.compose.weatherapplite.presentation.weather.composables.weather.Weath
 import com.compose.weatherapplite.presentation.weather.destinations.WeatherScreenDetailsContainerDestination
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -106,49 +109,55 @@ fun WeatherScreen(
             )
         }
     } else {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        WeatherLandingScreen(locationPermissionState)
+    }
+}
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+private fun WeatherLandingScreen(locationPermissionState: MultiplePermissionsState) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        val allPermissionsRevoked = locationPermissionState.permissions.size ==
+            locationPermissionState.revokedPermissions.size
+
+        val textToShow = if (!allPermissionsRevoked) {
+            "Yay! Thanks for letting me access your approximate location. " +
+                "But you know what would be great? If you allow me to know where you " +
+                "exactly are. Thank you!"
+        } else if (!locationPermissionState.shouldShowRationale) {
+            "Getting your exact location is important for localising the Weather App.\n" +
+                "Please grant us fine location to help us provide you " +
+                "with accurate weather information"
+        } else {
+            "This app requires location permission!"
+        }
+
+        val buttonText = if (!allPermissionsRevoked) {
+            "Allow precise location"
+        } else {
+            "Request permissions"
+        }
+
+        AnimatedVector(
+            drawable = R.drawable.avd_foggy,
+            modifier = Modifier.size(500.dp)
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = textToShow,
+            color = MaterialTheme.colorScheme.primary,
+            style = WeatherTypography.titleLarge,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        Button(
+            onClick = { locationPermissionState.launchMultiplePermissionRequest() }
         ) {
-            val allPermissionsRevoked = locationPermissionState.permissions.size ==
-                locationPermissionState.revokedPermissions.size
-
-            val textToShow = if (!allPermissionsRevoked) {
-                "Yay! Thanks for letting me access your approximate location. " +
-                    "But you know what would be great? If you allow me to know where you " +
-                    "exactly are. Thank you!"
-            } else if (!locationPermissionState.shouldShowRationale) {
-                "Getting your exact location is important for localising the Weather App.\n" +
-                    "Please grant us fine location to help us provide you " +
-                    "with accurate weather information"
-            } else {
-                "This app requires location permission!"
-            }
-
-            val buttonText = if (!allPermissionsRevoked) {
-                "Allow precise location"
-            } else {
-                "Request permissions"
-            }
-
-            AnimatedVector(
-                drawable = R.drawable.avd_foggy,
-                modifier = Modifier.size(500.dp)
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                text = textToShow,
-                color = MaterialTheme.colorScheme.primary,
-                style = WeatherTypography.titleLarge,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            Button(
-                onClick = { locationPermissionState.launchMultiplePermissionRequest() }
-            ) {
-                Text(text = buttonText)
-            }
+            Text(text = buttonText)
         }
     }
 }

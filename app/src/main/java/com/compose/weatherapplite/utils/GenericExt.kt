@@ -1,5 +1,9 @@
 package com.compose.weatherapplite.utils
 
+import com.compose.weatherapplite.utils.WeatherAppConstants.CITY_NAME_DELIMITER
+import com.compose.weatherapplite.utils.WeatherAppConstants.CITY_NAME_LIST_SIZE_MAX
+import com.compose.weatherapplite.utils.WeatherAppConstants.CITY_NAME_LIST_SIZE_MIN
+import com.compose.weatherapplite.utils.WeatherAppConstants.TIME_12_HOUR_FORMAT
 import java.lang.StringBuilder
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -13,8 +17,14 @@ fun LocalDate.convertToWeatherAppLiteDate(): String {
 }
 
 fun LocalDateTime.toTimeInTheDay(): String {
-    val ampm = if (hour >= 12) "pm" else "am"
-    val finalTime = if (hour > 12) hour - 12 else if (hour == 0) 12 else hour
+    val ampm = if (hour >= TIME_12_HOUR_FORMAT) "pm" else "am"
+    val finalTime = if (hour > TIME_12_HOUR_FORMAT) {
+        hour - TIME_12_HOUR_FORMAT
+    } else if (hour == 0) {
+        TIME_12_HOUR_FORMAT
+    } else {
+        hour
+    }
 
     return "$finalTime $ampm"
 }
@@ -33,11 +43,11 @@ fun LocalDate.toDayOfWeek(): String {
 }
 
 fun String.toShortenedCityName(): String {
-    val stringInProcess = this.split(",")
+    val stringInProcess = this.split(CITY_NAME_DELIMITER)
 
     return when (stringInProcess.size) {
-        3 -> "${stringInProcess[0]}, ${stringInProcess[2]}"
-        1 -> stringInProcess[0]
+        CITY_NAME_LIST_SIZE_MAX -> "${stringInProcess[0]}, ${stringInProcess[2]}"
+        CITY_NAME_LIST_SIZE_MIN -> stringInProcess[0]
         else -> this
     }
 }

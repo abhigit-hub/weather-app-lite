@@ -38,7 +38,7 @@ class WeatherRepositoryImpl @Inject constructor(
             val data = response.toWeatherInfo()
             Resource.Success(data = data)
         } catch (e: HttpException) {
-            e.printStackTrace()
+            Log.e(TAG, "ERROR: Failed api request - ${e.message()}")
             Resource.Error("Failed api request")
         }
     }
@@ -57,7 +57,7 @@ class WeatherRepositoryImpl @Inject constructor(
             val data = response.toGeoCodingInfo()
             Resource.Success(data = data)
         } catch (e: HttpException) {
-            e.printStackTrace()
+            Log.e(TAG, "ERROR: Failed api request - ${e.message()}")
             Resource.Error("Failed api request")
         }
     }

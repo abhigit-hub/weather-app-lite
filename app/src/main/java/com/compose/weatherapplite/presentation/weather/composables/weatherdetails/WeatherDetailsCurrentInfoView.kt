@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package com.compose.weatherapplite.presentation.weather.composables.weatherdetails
 
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,8 @@ import com.compose.weatherapplite.presentation.model.WeatherState
 import com.compose.weatherapplite.presentation.weather.composables.common.WeatherSummaryView
 import com.compose.weatherapplite.ui.theme.WeatherTypography
 
+private const val DIMENS_CONTAINER_HEIGHT = 0.17f
+
 @Composable
 fun WeatherDetailsCurrentInfoView(
     weatherState: WeatherState
@@ -22,7 +26,7 @@ fun WeatherDetailsCurrentInfoView(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.17f),
+            .fillMaxHeight(DIMENS_CONTAINER_HEIGHT),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
