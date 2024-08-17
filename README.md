@@ -1,5 +1,7 @@
-# Weather App (Jetpack Compose and CLEAN architecture)
+# Weather App Lite (Jetpack Compose and CLEAN architecture)
 A lite/minimalistic version of a weather app created using Jetpack Compose and CLEAN architecture
+
+[![Android Build](https://github.com/abhigit-hub/weather-app-lite/actions/workflows/blank.yml/badge.svg)](https://github.com/abhigit-hub/weather-app-lite/actions/workflows/blank.yml)
 
 ## Topics
 - [Glimpse](#glimpse)
