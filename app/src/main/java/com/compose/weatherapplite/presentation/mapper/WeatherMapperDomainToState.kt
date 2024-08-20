@@ -25,6 +25,8 @@ import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_M
 import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_NONE
 import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_VERY_HIGH
 import com.compose.weatherapplite.utils.WeatherAppConstants.WEATHER_RAIN_LEVEL_VERY_LOW
+import com.compose.weatherapplite.utils.checkIfDateMatches
+import com.compose.weatherapplite.utils.checkIfDateRangeMatches
 import com.compose.weatherapplite.utils.convertToWeatherAppLiteDate
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -47,7 +49,6 @@ fun WeatherInfo.toLocationState(): LocationState {
     return LocationState(
         latitude = latitude,
         longitude = longitude,
-
         cityName = "Berlin, Germany"
     )
 }
@@ -152,29 +153,18 @@ private fun checkDates(
     return when (weatherMenuSelectorType) {
         WeatherMenuSelectorType.WeatherMenuSelectorTypeToday,
         WeatherMenuSelectorType.WeatherMenuSelectorTypeTomorrow -> {
-            checkIfDateMatches(localDate = dateToBeChecked.toLocalDate(), filterDate = filterDate)
+            dateToBeChecked.toLocalDate().checkIfDateMatches(
+                filterDate = filterDate
+            )
         }
 
         WeatherMenuSelectorType.WeatherMenuSelectorTypeNextTenDays -> {
-            checkIfDateRangeMatches(
-                localDate = dateToBeChecked.toLocalDate(),
+            dateToBeChecked.toLocalDate().checkIfDateRangeMatches(
                 filterDate1 = LocalDate.now(),
                 filterDate2 = filterDate
             )
         }
     }
-}
-
-private fun checkIfDateMatches(localDate: LocalDate, filterDate: LocalDate): Boolean {
-    return localDate.isEqual(filterDate)
-}
-
-private fun checkIfDateRangeMatches(
-    localDate: LocalDate,
-    filterDate1: LocalDate,
-    filterDate2: LocalDate
-): Boolean {
-    return localDate.isAfter(filterDate1) && localDate.isBefore(filterDate2)
 }
 
 fun Int.toWeatherType(): WeatherType {

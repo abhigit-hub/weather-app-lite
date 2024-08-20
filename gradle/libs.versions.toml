@@ -18,9 +18,10 @@ lifecycle = "2.7.0-beta01"
 material3 = "1.1.2"
 okhttp = "4.11.0"
 playservicesLocation = "21.0.1"
+test-coroutines = "1.7.3"
 test-junit = "4.13.2"
 test-junit-core = "1.6.1"
-test-robolectric = "4.3"
+test-robolectric = "4.9"
 test-mockk = "1.13.7"
 retrofit = "2.9.0"
 versionCatalogUpdate = "0.8.1"
@@ -59,6 +60,7 @@ okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.
 okhttp3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 playservices-location = { module = "com.google.android.gms:play-services-location", version.ref = "playservicesLocation" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "test-coroutines" }
 test-junit = { module = "junit:junit", version.ref = "test-junit" }
 test-junit-core = { module = "androidx.test:core", version.ref = "test-junit-core" }
 test-roboelectric = { module = "org.robolectric:robolectric", version.ref = "test-robolectric" }

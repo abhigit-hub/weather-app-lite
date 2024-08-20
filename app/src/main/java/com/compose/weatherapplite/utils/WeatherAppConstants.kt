@@ -1,30 +1,32 @@
 package com.compose.weatherapplite.utils
 
 object WeatherAppConstants {
+
+    // Integer Constants
     const val WEATHER_FORECAST_MAX = 10L
 
-    private const val WEATHER_CODE_CLEAR_SKY_1 = 0
-    private const val WEATHER_CODE_OVERCAST_1 = 1
-    private const val WEATHER_CODE_OVERCAST_2 = 2
-    private const val WEATHER_CODE_OVERCAST_3 = 3
-    private const val WEATHER_CODE_FOGGY_1 = 45
-    private const val WEATHER_CODE_FOGGY_2 = 48
-    private const val WEATHER_CODE_DRIZZLE_1 = 51
-    private const val WEATHER_CODE_DRIZZLE_2 = 53
-    private const val WEATHER_CODE_DRIZZLE_3 = 55
-    private const val WEATHER_CODE_DRIZZLE_4 = 56
-    private const val WEATHER_CODE_DRIZZLE_5 = 57
-    private const val WEATHER_CODE_RAIN_1 = 61
-    private const val WEATHER_CODE_RAIN_2 = 63
-    private const val WEATHER_CODE_RAIN_3 = 65
-    private const val WEATHER_CODE_HEAVYRAIN_1 = 66
-    private const val WEATHER_CODE_HEAVYRAIN_2 = 67
-    private const val WEATHER_CODE_SNOWFALL_1 = 71
-    private const val WEATHER_CODE_SNOWFALL_2 = 73
-    private const val WEATHER_CODE_SNOWFALL_3 = 75
-    private const val WEATHER_CODE_THUNDERSTORM_1 = 95
-    private const val WEATHER_CODE_THUNDERSTORM_2 = 96
-    private const val WEATHER_CODE_THUNDERSTORM_3 = 99
+    const val WEATHER_CODE_CLEAR_SKY_1 = 0
+    const val WEATHER_CODE_OVERCAST_1 = 1
+    const val WEATHER_CODE_OVERCAST_2 = 2
+    const val WEATHER_CODE_OVERCAST_3 = 3
+    const val WEATHER_CODE_FOGGY_1 = 45
+    const val WEATHER_CODE_FOGGY_2 = 48
+    const val WEATHER_CODE_DRIZZLE_1 = 51
+    const val WEATHER_CODE_DRIZZLE_2 = 53
+    const val WEATHER_CODE_DRIZZLE_3 = 55
+    const val WEATHER_CODE_DRIZZLE_4 = 56
+    const val WEATHER_CODE_DRIZZLE_5 = 57
+    const val WEATHER_CODE_RAIN_1 = 61
+    const val WEATHER_CODE_RAIN_2 = 63
+    const val WEATHER_CODE_RAIN_3 = 65
+    const val WEATHER_CODE_HEAVYRAIN_1 = 66
+    const val WEATHER_CODE_HEAVYRAIN_2 = 67
+    const val WEATHER_CODE_SNOWFALL_1 = 71
+    const val WEATHER_CODE_SNOWFALL_2 = 73
+    const val WEATHER_CODE_SNOWFALL_3 = 75
+    const val WEATHER_CODE_THUNDERSTORM_1 = 95
+    const val WEATHER_CODE_THUNDERSTORM_2 = 96
+    const val WEATHER_CODE_THUNDERSTORM_3 = 99
 
     val WEATHER_CODE_CLEAR_SKY_LIST = listOf(
         WEATHER_CODE_CLEAR_SKY_1
@@ -76,6 +78,19 @@ object WeatherAppConstants {
     const val CITY_NAME_DELIMITER = ","
     const val CITY_NAME_LIST_SIZE_MAX = 3
     const val CITY_NAME_LIST_SIZE_MIN = 1
+
+    // String Constants
+    const val DAY_OF_WEEK_TODAY = "Today"
+    const val PATTERN_FOR_LOCAL_DATE_TIME = "yyyy-MM-dd'T'HH:mm"
+
+    const val WEATHER_MENU_SELECTOR_1 = "Today"
+    const val WEATHER_MENU_SELECTOR_2 = "Tomorrow"
+    const val WEATHER_MENU_SELECTOR_3 = "Next 10 days"
+
+    const val WEATHER_UNKNOWN_LOCATION = "Unknown Locality"
+
+    const val KEY_ANTE_MERIDIEM = "am"
+    const val KEY_POST_MERIDIEM = "pm"
 
     const val MAP_STYLE_LIGHT = "[\n" +
         "    {\n" +

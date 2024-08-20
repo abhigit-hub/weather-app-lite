@@ -79,6 +79,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     // Unit Testing
+    testImplementation(libs.test.coroutines)
     testImplementation(libs.test.junit)
     testImplementation(libs.test.junit.core)
     testImplementation(libs.test.roboelectric)
