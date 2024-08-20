@@ -78,6 +78,12 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    // Unit Testing
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.junit.core)
+    testImplementation(libs.test.roboelectric)
+    testImplementation(libs.test.mockk)
+
     // Tooling - Preview
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.ui.tooling.preview)
