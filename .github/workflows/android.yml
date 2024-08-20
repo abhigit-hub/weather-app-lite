@@ -35,6 +35,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      # Runs the entire unit test suite
+      - name: Run Unit Tests
+        run: ./gradlew test
+
 #      # Runs a set of commands using the runners shell
 #      - name: Upload a Build Artifact
 #        uses: actions/upload-artifact@v3.1.3
