@@ -1,9 +1,72 @@
-@file:Suppress("MagicNumber", "LongMethod")
+@file:Suppress("MagicNumber", "LongMethod", "TooManyFunctions")
 
 package com.compose.weatherapplite.data.repositoryfake
 
 import com.compose.weatherapplite.data.remote.dto.AddressDTO
 import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
+import com.compose.weatherapplite.domain.model.CurrentInfo
+import com.compose.weatherapplite.domain.model.CurrentUnitInfo
+import com.compose.weatherapplite.domain.model.HourlyInfo
+import com.compose.weatherapplite.domain.model.HourlyUnitInfo
+import com.compose.weatherapplite.utils.toLocalDate
+
+private const val FAKE_LOCATION_LATITUDE = 12.9737
+private const val FAKE_LOCATION_LONGITUDE = 77.7007
+
+private const val FAKE_WEATHER_UNIT_TIME = "iso8601"
+private const val FAKE_WEATHER_UNIT_INTERVAL = "seconds"
+private const val FAKE_WEATHER_UNIT_TEMPERATURE = "°C"
+private const val FAKE_WEATHER_UNIT_HUMIDITY = "%"
+private const val FAKE_WEATHER_UNIT_WINDSPEED = "km/h"
+private const val FAKE_WEATHER_TIME = "2024-11-01T07:30"
+private const val FAKE_WEATHER_INTERVAL = 900
+private const val FAKE_WEATHER_TEMPERATURE = 7.8
+private const val FAKE_WEATHER_WINDSPEED = 8.1
+private const val FAKE_WEATHER_WEATHER_CODE = 3
+
+fun fakeLocationLongitude() = FAKE_LOCATION_LATITUDE
+fun fakeLocationLatitude() = FAKE_LOCATION_LONGITUDE
+
+fun fakeWeatherUnitTime() = FAKE_WEATHER_UNIT_TIME
+fun fakeWeatherUnitInterval() = FAKE_WEATHER_UNIT_INTERVAL
+fun fakeWeatherUnitTemperature() = FAKE_WEATHER_UNIT_TEMPERATURE
+fun fakeWeatherUnitHumility() = FAKE_WEATHER_UNIT_HUMIDITY
+fun fakeWeatherUnitWindspeed() = FAKE_WEATHER_UNIT_WINDSPEED
+fun fakeWeatherTime() = FAKE_WEATHER_TIME
+fun fakeWeatherInterval() = FAKE_WEATHER_INTERVAL
+fun fakeWeatherTemperature() = FAKE_WEATHER_TEMPERATURE
+fun fakeWeatherWindspeed() = FAKE_WEATHER_WINDSPEED
+fun fakeWeatherWeatherCode() = FAKE_WEATHER_WEATHER_CODE
+
+fun fakeCurrentUnitInfo() = CurrentUnitInfo(
+    time = fakeWeatherUnitTime(),
+    interval = fakeWeatherUnitInterval(),
+    temperature = fakeWeatherUnitTemperature(),
+    windspeed = fakeWeatherUnitWindspeed()
+)
+
+fun fakeCurrentInfo() = CurrentInfo(
+    time = fakeWeatherTime(),
+    interval = fakeWeatherInterval(),
+    temperature = fakeWeatherTemperature(),
+    windspeed = fakeWeatherWindspeed(),
+    weatherCode = fakeWeatherWeatherCode()
+)
+
+fun fakeHourlyUnitInfo() = HourlyUnitInfo(
+    time = fakeWeatherUnitTime(),
+    temperature = fakeWeatherUnitTemperature(),
+    humidity = fakeWeatherUnitHumility(),
+    windspeed = fakeWeatherUnitWindspeed()
+)
+
+fun fakeHourlyInfo() = HourlyInfo(
+    time = getFakeTimeList().map { it.toLocalDate() },
+    temperature = getFakeTemperatureList(),
+    humidity = getFakeHumidityList(),
+    windspeed = getFakeWindspeedList(),
+    weatherCodes = getFakeWeatherCodeList()
+)
 
 fun getFakeTimeList() = listOf(
     "2024-08-16T00:00",

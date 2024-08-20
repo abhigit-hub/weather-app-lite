@@ -3,6 +3,7 @@ package com.compose.weatherapplite.data.mapper
 import com.compose.weatherapplite.data.remote.GeoCodingApi
 import com.compose.weatherapplite.data.remote.dto.GoogleGeoCodingDTO
 import com.compose.weatherapplite.domain.model.GeoCodingInfo
+import com.compose.weatherapplite.utils.WeatherAppConstants
 
 fun GoogleGeoCodingDTO.toGeoCodingInfo(): GeoCodingInfo {
     val cityName = this.results.filter {
@@ -11,7 +12,7 @@ fun GoogleGeoCodingDTO.toGeoCodingInfo(): GeoCodingInfo {
         if (it.isNotEmpty()) {
             it[0].formattedAddress
         } else {
-            "Unknown Locality"
+            WeatherAppConstants.WEATHER_UNKNOWN_LOCATION
         }
     }
 

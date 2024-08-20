@@ -74,7 +74,7 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    private fun processGeoCodingApiResponse(responseForGeoCodingApi: Resource<GeoCodingInfo>) {
+    internal fun processGeoCodingApiResponse(responseForGeoCodingApi: Resource<GeoCodingInfo>) {
         when (responseForGeoCodingApi) {
             is Resource.Success -> {
                 responseForGeoCodingApi.data?.let { geoCodingInfo ->
@@ -101,7 +101,7 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    private fun processWeatherApiResponse(responseForWeatherApi: Resource<WeatherInfo>) {
+    internal fun processWeatherApiResponse(responseForWeatherApi: Resource<WeatherInfo>) {
         when (responseForWeatherApi) {
             is Resource.Success -> {
                 responseForWeatherApi.data?.let { weatherInfo ->

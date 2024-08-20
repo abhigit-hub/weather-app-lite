@@ -5,10 +5,10 @@ import com.compose.weatherapplite.presentation.model.WeatherType
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class WeatherTypeExtensionsTest {
+class DrawableMapperExtensionsTest {
 
     @Test
-    fun `toDrawable returns correct drawable for ClearSky`() {
+    fun `test toDrawable returns correct drawable for ClearSky`() {
         // Action
         val result = WeatherType.ClearSky.toDrawable()
 
@@ -17,7 +17,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for Overcast`() {
+    fun `test toDrawable returns correct drawable for Overcast`() {
         // Action
         val result = WeatherType.Overcast.toDrawable()
 
@@ -26,7 +26,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for Foggy`() {
+    fun `test toDrawable returns correct drawable for Foggy`() {
         // Action
         val result = WeatherType.Foggy.toDrawable()
 
@@ -35,7 +35,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for Drizzle`() {
+    fun `test toDrawable returns correct drawable for Drizzle`() {
         // Action
         val result = WeatherType.Drizzle.toDrawable()
 
@@ -44,7 +44,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for Rain`() {
+    fun `test toDrawable returns correct drawable for Rain`() {
         // Action
         val result = WeatherType.Rain.toDrawable()
 
@@ -53,7 +53,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for HeavyRain`() {
+    fun `test toDrawable returns correct drawable for HeavyRain`() {
         // Action
         val result = WeatherType.HeavyRain.toDrawable()
 
@@ -62,7 +62,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for SnowFall`() {
+    fun `test toDrawable returns correct drawable for SnowFall`() {
         // Action
         val result = WeatherType.SnowFall.toDrawable()
 
@@ -71,7 +71,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toDrawable returns correct drawable for Thunderstorm`() {
+    fun `test toDrawable returns correct drawable for Thunderstorm`() {
         // Action
         val result = WeatherType.Thunderstorm.toDrawable()
 
@@ -80,7 +80,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for ClearSky`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for ClearSky`() {
         // Action
         val result = WeatherType.ClearSky.toAnimatedVectorDrawable()
 
@@ -89,7 +89,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for Overcast`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for Overcast`() {
         // Action
         val result = WeatherType.Overcast.toAnimatedVectorDrawable()
 
@@ -98,7 +98,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for Foggy`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for Foggy`() {
         // Action
         val result = WeatherType.Foggy.toAnimatedVectorDrawable()
 
@@ -107,7 +107,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for Drizzle`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for Drizzle`() {
         // Action
         val result = WeatherType.Drizzle.toAnimatedVectorDrawable()
 
@@ -116,7 +116,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for Rain`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for Rain`() {
         // Action
         val result = WeatherType.Rain.toAnimatedVectorDrawable()
 
@@ -125,7 +125,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for HeavyRain`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for HeavyRain`() {
         // Action
         val result = WeatherType.HeavyRain.toAnimatedVectorDrawable()
 
@@ -134,7 +134,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for SnowFall`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for SnowFall`() {
         // Action
         val result = WeatherType.SnowFall.toAnimatedVectorDrawable()
 
@@ -143,7 +143,7 @@ class WeatherTypeExtensionsTest {
     }
 
     @Test
-    fun `toAnimatedVectorDrawable returns correct drawable for Thunderstorm`() {
+    fun `test toAnimatedVectorDrawable returns correct drawable for Thunderstorm`() {
         // Action
         val result = WeatherType.Thunderstorm.toAnimatedVectorDrawable()
 
